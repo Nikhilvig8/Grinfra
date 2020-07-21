@@ -1,0 +1,74 @@
+﻿@model GrInfra.Models.SiteMaster
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="report-details-cover">
+                @using (Html.BeginForm())
+                {
+                    <div class="report-details">
+                        <div>
+                            <h2>Edit</h2>
+                        </div>
+                        <div class="reports-hdr">
+                            <div class="d-flex">
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Branch Code</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BUCode, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.BUCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <label class = "control-label col-md-2" >Branch Name</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.BUDescription, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.BUDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Working Hour</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Workinghours, new { htmlAttributes = new { @class = "form-control", @type = "number", step=".01", min = "0"} })
+                            @Html.ValidationMessageFor(model => model.Workinghours, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Grace Period</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.GracePeriod, new { htmlAttributes = new { @class = "form-control", @type = "number", step=".01", min = "0" } })
+                            @Html.ValidationMessageFor(model => model.GracePeriod, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn red-btn">Submit</button>
+                            <input type="button" id="Back" class="btn dark-grey-btn hyper" value="Back" onclick="location.href='@Url.Action("Index", "SiteMaster")'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

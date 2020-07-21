@@ -1,0 +1,222 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<GrInfra.Models.UserCreate>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="report-details-cover">
+            @using (Html.BeginForm())
+            {
+                <div class="report-details">
+                    <h2>Mobile Devices List</h2>
+                    <div class="reports-hdr">
+                        <div class="selectdiv">
+                            @Html.DropDownList("pagesize", new List<SelectListItem>
+                            {
+                                new SelectListItem{ Text="10", Value = "10" },
+                                new SelectListItem{ Text="50", Value = "50" },
+                                new SelectListItem{ Text="100", Value = "100" },
+                                new SelectListItem{ Text="500", Value = "500" },
+                                new SelectListItem{ Text="1000", Value = "1000" },
+                             }, htmlAttributes: new { id = "search", @class = "form-control select2" })
+                        </div>
+                        <div class="selectdiv">
+                            @Html.DropDownList("search", (IEnumerable<SelectListItem>)ViewBag.BranchList, "Location", htmlAttributes: new { id = "search", @class = "form-control select2" })
+                        </div>
+                        <div class="form-group search">
+                            @Html.DropDownList("empid", (IEnumerable<SelectListItem>)ViewBag.EmployeeId, "Employee", htmlAttributes: new { id = "empid", @class = "form-control select2" })
+                        </div>
+                        <input type="hidden" name="page" value="1" />
+                        <div class="d-flex">
+                            <input type="submit" id="filter" class="btn red-btn" value="Go" title="Filter Data on Basis of Filter" />
+                            <input type="button" id="filter" class="btn dark-grey-btn" title="Removes All Appplied Filters" value="Reset" onclick="location.href='@Url.Action("Index", "MobileDevice")'" />
+                            <button type="button" id="export" class="btn red-btn hyper" title="Fetch Excel Report "><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></button>
+                            @*<input type="button" class="btn orange-btn" value="Create" onclick="location.href='@Url.Action("Create", "TempEmployeeMasters")'" />*@
+                        </div>
+                    </div>
+                </div>
+            }
+
+        
+
+
+            <div class="table-responsive cmn-table mb-3">
+                <table  class="table table-striped frz-col">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <label class="form-check-label">Employee Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Employee Name</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Action</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">IMEI/UID</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Battery</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Last Activity</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Last Location</label>
+                            </th>
+
+                            <th scope="col">
+                                <label class="form-check-label">Manager Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Manager Name</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">HR Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">HR Name</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Department</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Designation</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Branch</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Mobile No</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Email Id</label>
+                            </th>
+                             <th scope="col">
+                                 <label class="form-check-label">App Version</label>
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmpName)
+                        </td>
+                        <td>
+                            <button class="btn btn-light" id="resetdeviceid" onclick="if (confirm('Do you want to Reset Mobile Device ID?')) { location.href = '@Url.Action("ActiveUser", "MobileDevice", new { id = item.EmployeeId })' }">
+                                <span class="fa-passwd-reset fa-stack">
+                                    <i class="fa fa-undo fa-stack-2x" style="color:black;"></i>
+                                    <i class="fa fa-lock fa-stack-1x" style="color:black;"></i>
+                                </span>
+                            </button>
+                        </td>
+                        <td>
+                            @{ if (item.IMEI != null)
+                                {
+                                    string bat = item.IMEI.ToString();
+                                    @Html.DisplayName(bat)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{ if (item.Battery > 0)
+                                {
+                                    string bat = item.Battery.ToString();
+                                    @Html.DisplayName(bat + "%")
+                                }
+
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            }
+
+                        </td>
+                        <td>
+                            @{ if (item.LastActivity != null)
+                                {
+                                    //DateTime date = Convert.ToDateTime(item.LastActivity);
+                                    //string date1 = date.ToString("dd-MM-yyyy hh:mm tt");
+                                    @Html.DisplayName(item.LastActivity)
+
+                                    //  @Html.DisplayName(date1+" "+date.Hour.ToString() + ":" + date.Minute.ToString() + ":" + date.Second.ToString())
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            }
+
+                        </td>
+                        <td>
+                            @{ if (item.LastLocation != null)
+                                {
+                                    string bat = item.LastLocation.ToString();
+                                    @Html.DisplayName(bat)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportingManger)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportingMangerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HRID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HRName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Designation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Branch)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmpMobile)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmpEmailId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AppVersion)
+                        </td>
+
+                    </tr>
+                        }
+
+                </table>
+            </div>
+            <div class="pagination-cover d-flex justify-content-between">
+                <div class="pag-text"> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </div>
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search, empid = ViewBag.Employee, pagesize = ViewBag.pagesize }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/JS/NewEventRequest.js"></script>

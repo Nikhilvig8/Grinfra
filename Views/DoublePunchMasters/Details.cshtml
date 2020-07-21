@@ -1,0 +1,34 @@
+﻿@model GrInfra.Models.DoublePunchMaster
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DoublePunchMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BUCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BUCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoublePunchMechanism)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoublePunchMechanism)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

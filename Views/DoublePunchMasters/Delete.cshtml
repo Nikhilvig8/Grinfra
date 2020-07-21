@@ -1,0 +1,40 @@
+﻿@model GrInfra.Models.DoublePunchMaster
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DoublePunchMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BUCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BUCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoublePunchMechanism)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoublePunchMechanism)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

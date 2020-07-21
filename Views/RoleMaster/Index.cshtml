@@ -1,0 +1,217 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<GrInfra.Models.RoleModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style type="text/css">
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        height: 17px;
+    }
+
+        .switch input {
+            display: none;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 13px;
+            width: 13px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+        }
+
+    /* include generated hidden field here */
+    input[type="checkbox"]:checked + input[type="hidden"] + .slider,
+    input[type="checkbox"]:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    /* include generated hidden field here */
+    input[type="checkbox"]:focus + input[type="hidden"] + .slider,
+    input[type="checkbox"]:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    /* include generated hidden field here */
+    input[type="checkbox"]:checked + input[type="hidden"] + .slider:before,
+    input[type="checkbox"]:checked + .slider:before {
+        transform: translateX(13px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 17px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+<div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="report-details-cover">
+            @using (Html.BeginForm())
+            {
+                <div class="report-details">
+                    <h2>Active - DeActive List</h2>
+                    <div class="reports-hdr">
+                        <div class="selectdiv">
+                            @Html.DropDownList("pagesize", new List<SelectListItem>
+                            {
+                                new SelectListItem{ Text="10", Value = "10" },
+                                new SelectListItem{ Text="50", Value = "50" },
+                                new SelectListItem{ Text="100", Value = "100" },
+                                new SelectListItem{ Text="500", Value = "500" },
+                                new SelectListItem{ Text="1000", Value = "1000" },
+                             }, htmlAttributes: new { id = "pagesize", @class = "form-control select2" })
+                        </div>
+                        <div class="form-group search">
+                            @Html.DropDownList("emp", (IEnumerable<SelectListItem>)ViewBag.EmployeeId, "Employee Id", htmlAttributes: new { id = "empid", @class = "form-control select2" })
+                        </div>
+                        <input type="hidden" name="page" value="1" />
+                        <div class="d-flex">
+                            <input type="submit" id="filter" class="btn red-btn" value="Go" title="Filter Data on Basis of Filter" />
+                            <input type="button" id="filter" class="btn dark-grey-btn" title="Removes All Appplied Filters" value="Reset" onclick="location.href='@Url.Action("Index", "RoleMaster")'" />
+                            @*<input type="button" class="btn orange-btn" value="Create" onclick="location.href='@Url.Action("Create", "TempEmployeeMasters")'" />*@
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="table-responsive cmn-table mb-3">
+                <table class="table table-striped frz-super">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <label class="form-check-label">Employee Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Employee Name</label>
+                            </th>
+                            <th scope="col">
+                                <label>Status</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Manager Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Manager Name</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">HR Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">HR Name</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Department</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Designation</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Branch Code</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Branch</label>
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(modelItem => item.UserId)
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeName)
+                        </td>
+                        <td>
+                            @if (@item.isactive == true)
+                            {
+                                <label class="switch">
+                                    <input type="checkbox" checked />
+                                    <div class="slider round"></div>
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="switch">
+                                    <input type="checkbox" />
+                                    <div class="slider round"></div>
+                                </label>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ManagerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ManagerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HRId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HRName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Designation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BUCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Branch)
+                        </td>
+                        <td>
+                            @if (@item.isactive == true)
+                            {
+                                <label class="switch">
+                                    <input type="checkbox" checked />
+                                    <div class="slider round"></div>
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="switch">
+                                    <input type="checkbox" />
+                                    <div class="slider round"></div>
+                                </label>
+                            }
+                        </td>
+                    </tr>
+                        }
+
+                </table>
+            </div>
+            <div class="pagination-cover d-flex justify-content-between">
+                <div class="pag-text"> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </div>
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search, empid = ViewBag.Employee }),PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            </div>
+        </div>
+    </div>
+</div>

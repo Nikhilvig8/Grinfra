@@ -1,0 +1,93 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<GrInfra.Models.SiteMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="report-details-cover">
+            @using (Html.BeginForm())
+            {
+                <div class="report-details">
+                    <div>
+                        <h2>Branch - Timing List</h2>
+                    </div>
+                    <div class="reports-hdr">
+                        <div class="selectdiv">
+                            @Html.DropDownList("pagesize", new List<SelectListItem>
+                            {
+                                new SelectListItem{ Text="10", Value = "10" },
+                                new SelectListItem{ Text="50", Value = "50" },
+                                new SelectListItem{ Text="100", Value = "100" },
+                                new SelectListItem{ Text="500", Value = "500" },
+                                new SelectListItem{ Text="1000", Value = "1000" },
+                             }, htmlAttributes: new { id = "search", @class = "form-control select2" })
+                        </div>
+                        <div class="selectdiv">
+                            @Html.DropDownList("branch", (IEnumerable<SelectListItem>)ViewBag.BranchList, "Location", htmlAttributes: new { id = "branch", @class = "form-control select2" })
+                        </div>
+                        <input type="hidden" name="page" value="1" />
+                        <div class="d-flex">
+                            @* <input type="button" id="reset" class="btn dark-grey-btn hyper" value="Create" onclick="location.href='@Url.Action("Create", "SiteMaster")'" />*@
+                            <input type="submit" id="Go"  title="Filter Data on Basis of Filter"  class="btn red-btn" value="Go" onclick="" />
+                        </div>
+                    </div>
+                </div>
+            }
+        <div class="table-responsive cmn-table mb-3">
+            <table class="table table-striped frz-branch">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <text>Branch Code</text>
+                        </th>
+                        <th scope="col">
+                            <text>Branch Name</text>
+                        </th>
+                        <th scope="col">
+                            <text>Working Hours</text>
+                        </th>
+                        <th scope="col">
+                            <text>Grace Period</text>
+                        </th>
+                        <th scope="col">
+                            <text>Action</text>
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BUCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BUDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Workinghours)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GracePeriod)
+                            </td>
+                            <td>
+                                <button class="btn btn-light" onclick="location.href='@Url.Action("Edit", "SiteMaster", new { id = item.Id })'"><i class="fas fa-pencil-alt"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+            <div class="pagination-cover d-flex justify-content-between" style="padding-top:25px;">
+                <div class="pag-text"> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </div>
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pagesize = ViewBag.pagesize, branch = ViewBag.Branch }),PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            </div>
+        </div>
+    </div>
+</div>

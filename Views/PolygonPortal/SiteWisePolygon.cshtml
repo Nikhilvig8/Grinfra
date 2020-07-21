@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "SiteWisePolygon";
+}
+<style>
+    .red-alert {
+        border-color: red;
+    }
+</style>
+
+<div class="container py-4">
+    <div class="card">
+        <div class="card-header text-white" style="background-color:navy">
+            <h6 class="text-uppercase" style="padding:1rem">Site Wise Polygon</h6>
+        </div>
+        <div class="card-body">
+            <input type="hidden" value="@ViewBag.Id" id="site" />
+            Office Cordinates:- <br/>
+            Lattitude <input type="number" id="officelat" name="officelat" class="form-control" value="@ViewBag.lat" />
+            Longitude <input type="number" id="officelong" name="officelong" class="form-control" value="@ViewBag.log" />
+            <div>
+                <div class="col-12 row">
+                    <button id="addPolygon" class="form-control col-1" style="margin-bottom: 8px; float:right;">Add New</button>
+                </div>
+
+
+
+
+                <div class="table-responsive cmn-table mb-3">
+                    <table class="table table-striped frz-announcement" id="tblpolygon">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Latitude
+                                </th>
+                                <th>
+                                    Longitude
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="align-items:center">
+                <center><button class="form-control" style="width:250px" id="SavePloygon">Save Polygon Coordinates</button></center>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

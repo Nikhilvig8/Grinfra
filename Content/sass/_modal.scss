@@ -1,0 +1,107 @@
+.cmn-modal {
+  z-index: 10000;
+  .modal-dialog {
+    background: url(../images/modal-bg.png) no-repeat;
+    border-radius: 3px;
+    max-width: 700px;
+    width: auto;
+    .modal-content {
+      background-color: transparent;
+      border: none;
+      .btn {
+        min-width: 80px;
+      }
+      .modal-main-content {
+        p {
+          font-size: 1.375rem;
+          font-family: 'Helvetica Neue Bold', sans-serif;
+          text-align: center;
+          text-transform: uppercase;
+          margin-bottom: 2rem;
+          span {
+            display: block;
+            font-size: 1rem;
+            font-family: 'Helvetica Neue Medium', sans-serif;
+          }
+        }
+        .data-cover {
+          margin: 0 auto;
+          margin-bottom: 1.2rem;
+          padding: 0 0 1.2rem 1rem;
+          max-width: 230px;
+          &.borders-bottom {
+            border-bottom: 1px solid #ccc;
+            @include respond(phone) {
+              border: none;
+            }
+          }
+
+          img {
+            display: inline-block;
+            margin-right: 0.5rem;
+          }
+          p {
+            font-size: 0.875rem;
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+            margin: 0;
+            span {
+              font-size: 0.75rem;
+            }
+          }
+        }
+      }
+      .modal-header {
+        border: none;
+        h5 {
+          font-size: 36px;
+          text-align: center;
+          color: #fff;
+          font-family: 'markerfeltthin', sans-serif;
+          display: block;
+          width: 100%;
+          letter-spacing: 0.02rem;
+        }
+      }
+      .modal-footer {
+        border: none;
+      }
+      .bttn-box {
+        margin-bottom: 0;
+      }
+      .modal-body {
+        background-color: #fff;
+        max-width: 650px;
+        margin: 1.5rem auto;
+        width: 100%;
+        padding: 4rem 0 1rem;
+        &::before {
+          content: '';
+          background: url(../images/family-day-icon.png) no-repeat;
+          position: absolute;
+          width: 100%;
+          height: 70px;
+          background-position: center;
+          top: -35px;
+        }
+      }
+    }
+  }
+}
+.right-bord {
+  &::after {
+    position: absolute;
+    content: '';
+    border-right: 1px solid #ccc;
+    right: 0;
+    height: 45px;
+    top: -4px;
+    @include respond(phone) {
+      display: none;
+    }
+  }
+}
+.modal-backdrop {
+  z-index: 9999;
+}

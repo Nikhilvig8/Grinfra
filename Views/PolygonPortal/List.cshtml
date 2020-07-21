@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GrInfra.Models.SiteMaster>
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="report-details-cover">
+            @using (Html.BeginForm())
+            {
+                <div class="report-details">
+                    <div>
+                        <h2>Branch</h2>
+                    </div>
+                    <div class="reports-hdr">
+                        <div class="selectdiv">
+                            @Html.DropDownList("branch", (IEnumerable<SelectListItem>)ViewBag.BranchList, "Location", htmlAttributes: new { id = "branch", @class = "form-control select2" })
+                        </div>
+                        <input type="hidden" name="page" value="1" />
+                        <div class="d-flex">
+                            <input type="submit" id="filter" class="btn red-btn hyper" value="Go" title="Filter Data on Basis of Filter" onclick="" />
+                            <input type="button" title="Removes All Appplied Filters" id="reset" class="btn dark-grey-btn hyper" value="Reset" onclick="location.href='@Url.Action("List", "PolygonPortal")'" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="table-responsive cmn-table mb-3">
+                <table class="table table-striped frz-announcement">
+                    <thead>
+                        <tr>
+                            <th>
+                                Branch Code
+                            </th>
+                            <th>
+                                Branch Description
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.HiddenFor(modelItem => item.Id)
+                                    @Html.DisplayFor(modelItem => item.BUCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BUDescription)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("SiteWisePolygon","PolygonPortal",new { id = @item.Id })"><i class="fa fa-pencil" style="color:darkorange;"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

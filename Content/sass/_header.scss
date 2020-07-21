@@ -1,0 +1,74 @@
+@import 'colorpalette';
+@import 'mixins';
+
+$font-size24: 0.875rem;
+
+.top-navbar {
+  background: linear-gradient(to right, $nav-bgcolor1, $nav-bgcolor2);
+  padding: 0.2rem 1rem;
+  width: calc(100% - 190px);
+  right: 0;
+  left: unset;
+  transition: all 0.3s ease-in-out;
+  z-index: 9999;
+  @include respond(phone) {
+    width: 100%;
+  }
+  &.active {
+    width: calc(100% - 100px);
+    @include respond(phone) {
+      width: calc(100% - 250px);
+    }
+  }
+  .navbar-brand {
+    margin-right: 0;
+    flex-grow: 1;
+    padding-left: 5.5rem;
+
+    @include respond(phone) {
+      padding-left: 1rem;
+    }
+  }
+  .top-nav-content a {
+    color: $font-color2;
+    font-size: $font-size24;
+    font-weight: 500;
+    padding-right: 2rem;
+    i {
+      position: absolute;
+      right: 0px;
+      bottom: 1.4rem;
+    }
+    &::after {
+      display: none;
+    }
+  }
+  a .fi:before {
+    margin-left: 0;
+  }
+  .module-name {
+    display: flex;
+    flex-grow: 2;
+    align-content: center;
+    margin: 0;
+    font-size: 1rem;
+    color: $font-color2;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue medium', sans-serif;
+    @include respond(phone) {
+      display: none;
+    }
+  }
+  .dropdown-menu {
+    a {
+      color: $font-color1;
+    }
+  }
+}
+
+.bold-fonts {
+  font-family: 'Helvetica Neue Bold', sans-serif;
+}
+.medium-fonts {
+  font-family: 'Helvetica Neue Medium', sans-serif;
+}

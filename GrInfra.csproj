@@ -1,0 +1,726 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{30570B6E-856F-4DE4-A300-0ABAD41674C1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GrInfra</RootNamespace>
+    <AssemblyName>GrInfra</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44327</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.10.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.Core, Version=1.7.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hangfire.Core.1.7.9\lib\net46\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.7.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hangfire.SqlServer.1.7.9\lib\net45\Hangfire.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="InMemoryMultipartFormDataStreamProvider, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\InMemoryMultipartFormDataStreamProvider.1.0.1\lib\net45\InMemoryMultipartFormDataStreamProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.JsonWebTokens.5.2.4\lib\net451\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Logging.5.2.4\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Tokens.5.2.4\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Common, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.VisualStudio.Services.Client.16.153.0\lib\net45\Microsoft.TeamFoundation.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.Common, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.VisualStudio.Services.Client.16.153.0\lib\net45\Microsoft.VisualStudio.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.WebApi, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.VisualStudio.Services.Client.16.153.0\lib\net45\Microsoft.VisualStudio.Services.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=17.4460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Compression.Base.17.4.0.47\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=17.4460.0.47, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Licensing.17.4.0.47\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=17.4460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.WinForms.17.4.0.47\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Device" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.IdentityModel.Tokens.Jwt.5.2.4\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\datetimepicker\css\bootstrap-datetimepicker.css" />
+    <Content Include="Components\datetimepicker\css\pmd-datetimepicker.css" />
+    <Content Include="Components\datetimepicker\datetimepicker-npm.html" />
+    <Content Include="Components\datetimepicker\datetimepicker.html" />
+    <Content Include="Components\datetimepicker\js\bootstrap-datetimepicker.js" />
+    <Content Include="Components\datetimepicker\js\moment-with-locales.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\common.css" />
+    <Content Include="Content\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\pmd-select2.css" />
+    <Content Include="Content\select2-bootstrap.css" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="font\flaticon.css" />
+    <Content Include="font\flaticon.html" />
+    <Content Include="font\Flaticon.svg" />
+    <Content Include="font\helvetica-neue\example.html" />
+    <Content Include="font\helvetica-neue\style.css" />
+    <Content Include="font\marker felt\stylesheet.css" />
+    <Content Include="Global.asax" />
+    <Content Include="images\2020-02-04.png" />
+    <Content Include="images\2020-02-041.png" />
+    <Content Include="images\approve-reject-attendance.png" />
+    <Content Include="images\approve-reject-attendance_wt.png" />
+    <Content Include="images\approved-icon.png" />
+    <Content Include="images\budget-modal-icon.png" />
+    <Content Include="images\budget_icon.png" />
+    <Content Include="images\calender-icon.png" />
+    <Content Include="images\changepssword.png" />
+    <Content Include="images\company-logo1.png" />
+    <Content Include="images\dashboard.png" />
+    <Content Include="images\dashboard_dark_icon.png" />
+    <Content Include="images\dashboard_light_icon.png" />
+    <Content Include="images\dashboard_wt.png" />
+    <Content Include="images\event_detail_icon.png" />
+    <Content Include="images\family-day-icon.png" />
+    <Content Include="images\gallery.png" />
+    <Content Include="images\gallery_wt.png" />
+    <Content Include="images\grprofile.png" />
+    <Content Include="images\hotel_detail_icon.png" />
+    <Content Include="images\hr.png" />
+    <Content Include="images\hr_wt.png" />
+    <Content Include="images\kpi1-bg.png" />
+    <Content Include="images\location-icon.png" />
+    <Content Include="images\login-bgg.jpg" />
+    <Content Include="images\login_bg.png" />
+    <Content Include="images\logo-white_2.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logout_dark_icon.png" />
+    <Content Include="images\logout_light_icon.png" />
+    <Content Include="images\logo_inner.png" />
+    <Content Include="images\logo_login.png" />
+    <Content Include="images\logo_white.png" />
+    <Content Include="images\master_dark_icon.png" />
+    <Content Include="images\master_light_icon.png" />
+    <Content Include="images\mobile-device.png" />
+    <Content Include="images\mobile-device_wt.png" />
+    <Content Include="images\MobileIcon.png" />
+    <Content Include="images\modal-bg.png" />
+    <Content Include="images\monthly-report.png" />
+    <Content Include="images\monthly-report_wt.png" />
+    <Content Include="images\new_request_dark_icon.png" />
+    <Content Include="images\new_request_light_icon.png" />
+    <Content Include="images\polygon.png" />
+    <Content Include="images\polygon_wt.png" />
+    <Content Include="images\PWC-logo.png" />
+    <Content Include="images\pwc-white-logo.png" />
+    <Content Include="images\Reasons.png" />
+    <Content Include="images\Reasons_wt.png" />
+    <Content Include="images\red-calender-icon.png" />
+    <Content Include="images\rejected-icon.png" />
+    <Content Include="images\report_dark_icon.png" />
+    <Content Include="images\report_light_icon.png" />
+    <Content Include="images\role_dark_icon.png" />
+    <Content Include="images\role_light_icon.png" />
+    <Content Include="images\search-icon.png" />
+    <Content Include="images\services_icon.png" />
+    <Content Include="images\settings_dark_icon.png" />
+    <Content Include="images\settings_light_icon.png" />
+    <Content Include="images\sidenav4.jpg" />
+    <Content Include="images\site-master.png" />
+    <Content Include="images\site-master_wt.png" />
+    <Content Include="images\splash-logo_1.png" />
+    <Content Include="images\total-request-icon.png" />
+    <Content Include="images\unnamed.png" />
+    <Content Include="images\user.png" />
+    <Content Include="images\user_wt.png" />
+    <Content Include="JS\Chart\exporting.js" />
+    <Content Include="JS\Chart\highcharts.js" />
+    <Content Include="JS\freeze.js" />
+    <Content Include="JS\NewEventRequest.js" />
+    <Content Include="Models\GrInfra.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GrInfra.edmx</DependentUpon>
+      <LastGenOutput>GrInfra.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\GrInfra.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GrInfra.edmx</DependentUpon>
+      <LastGenOutput>GrInfra.cs</LastGenOutput>
+    </Content>
+    <Content Include="PhotoGallery\Activity 1 - REST %281%29.gif" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\sass\style.scss" />
+    <Content Include="Content\sass\_colorPalette.scss" />
+    <Content Include="Content\sass\_customButtons.scss" />
+    <Content Include="Content\sass\_footer.scss" />
+    <Content Include="Content\sass\_header.scss" />
+    <Content Include="Content\sass\_login.scss" />
+    <Content Include="Content\sass\_mixins.scss" />
+    <Content Include="Content\sass\_modal.scss" />
+    <Content Include="Content\sass\_sidebar.scss" />
+    <EntityDeploy Include="Models\GrInfra.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GrInfra.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\GrInfra.edmx.diagram">
+      <DependentUpon>GrInfra.edmx</DependentUpon>
+    </Content>
+    <Content Include="Components\datetimepicker\package.json" />
+    <Content Include="Components\datetimepicker\README.md" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.mCustomScrollbar.concat.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pmd-select2.js" />
+    <Content Include="Scripts\select2.full.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Views\web.config" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApproveRejectAttendanceController.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
+    <Compile Include="Controllers\updateappversionController.cs" />
+    <Compile Include="Controllers\iosAppversionController.cs" />
+    <Compile Include="Controllers\DeleteBellNotificationController.cs" />
+    <Compile Include="Controllers\BellNotificationController.cs" />
+    <Compile Include="Controllers\AppversionController.cs" />
+    <Compile Include="Controllers\MobileInformationController.cs" />
+    <Compile Include="Controllers\DataCleanController.cs" />
+    <Compile Include="Controllers\DoublePunchMastersController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\MarkEmployeeAttendanceListByHeadController.cs" />
+    <Compile Include="Controllers\AttendanceListByHeadController.cs" />
+    <Compile Include="Controllers\AttendanceReportController.cs" />
+    <Compile Include="Controllers\BannerimageController.cs" />
+    <Compile Include="Controllers\BannerUploaderController.cs" />
+    <Compile Include="Controllers\BirthHrListController.cs" />
+    <Compile Include="Controllers\BirthdayListController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\HRAnnouncementController.cs" />
+    <Compile Include="Controllers\HrNotificationController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\ReasonMastersController.cs" />
+    <Compile Include="Controllers\RoleMasterController.cs" />
+    <Compile Include="Controllers\SitemasterController.cs" />
+    <Compile Include="Controllers\SuperMasterController.cs" />
+    <Compile Include="Models\BellNotificationAttendance .cs" />
+    <Compile Include="Models\ApproveRejectAttendanceController.cs" />
+    <Compile Include="Models\Appversion.cs" />
+    <Compile Include="Models\AppversionMaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttendanceLogsNewForMobile.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\attendancestatusmaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Banner_image.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BiometricAttendance.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\iosAppversionMaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MobileDetail.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MobileInformation.cs" />
+    <Compile Include="Models\BirthdayList1.cs" />
+    <Compile Include="Models\DoublePunchMaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DoubleSite.cs" />
+    <Compile Include="Models\EmployeeMaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getAttendanceListByReportingHead_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBirthdayData_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getuserattendancebyhead_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HrNotification.cs" />
+    <Compile Include="Models\BirthdayList.cs" />
+    <Compile Include="Models\ChartModel.cs" />
+    <Compile Include="Controllers\CheckAuthTokenController.cs" />
+    <Compile Include="Controllers\CheckCurrentStatusController.cs" />
+    <Compile Include="Controllers\ForgetpasswordController.cs" />
+    <Compile Include="Controllers\LoginPortalController.cs" />
+    <Compile Include="Controllers\MonthlyAttendanceReportController.cs" />
+    <Compile Include="Controllers\MobileDeviceController.cs" />
+    <Compile Include="Controllers\PolygonPortalController.cs" />
+    <Compile Include="Controllers\AttendanceStatusListController.cs" />
+    <Compile Include="Controllers\ReasonListController.cs" />
+    <Compile Include="Controllers\SFTPDataController.cs" />
+    <Compile Include="Controllers\TempEmployeeMastersController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
+    <Compile Include="Models\ApproveRejectAttendance.cs" />
+    <Compile Include="Models\AttendanceListByHead.cs" />
+    <Compile Include="Models\AttendanceListByUser.cs" />
+    <Compile Include="Controllers\AttendanceListByUserController.cs" />
+    <Compile Include="Controllers\AttendenceInController.cs" />
+    <Compile Include="Controllers\AttendenceOutController.cs" />
+    <Compile Include="Controllers\BioMetricAttendanceController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PolygonController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttendanceReport.cs" />
+    <Compile Include="Models\AttendenceIn.cs" />
+    <Compile Include="Models\AttendenceOut.cs" />
+    <Compile Include="Models\BannerImage.cs" />
+    <Compile Include="Models\CheckAuthToken.cs" />
+    <Compile Include="Models\CheckCurrentStatus.cs" />
+    <Compile Include="Models\clsAuthentication.cs" />
+    <Compile Include="Models\AttendanceStatusList.cs" />
+    <Compile Include="Models\HR_Announcement.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InsertAttendanceIn_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InsertAttendanceOut_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MarkEmployeeAttendanceListByHead.cs" />
+    <Compile Include="Models\MasterPassword.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MobileDevicelog.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Monthly.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyAuthorizationFilter.cs" />
+    <Compile Include="Models\Notification.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Polygon.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReasonList.cs" />
+    <Compile Include="Models\Coordinates.cs" />
+    <Compile Include="Models\DropDownModel.cs" />
+    <Compile Include="Models\Forgetpassword.cs" />
+    <Compile Include="Models\GrInfra.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GrInfra.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GrInfra.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GrInfra.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GrInfra.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\LoginPortalModel.cs" />
+    <Compile Include="Models\ReasonMaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Roaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoleDefine.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\ShiftMaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SiteMaster.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ApproveorRejectAttendance_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Attendancelistbyuser_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_bannerimage_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_checkcurrentstatus_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getheaddatabyuserid_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_hrnotification_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_logintemp_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_login_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_mobiledetails_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_MonthlyAttendanceReports_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_polygon_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ReasonsList_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_updateUserPassword_Result.cs">
+      <DependentUpon>GrInfra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Update.cs" />
+    <Compile Include="Models\UserCreate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="font\Flaticon.eot" />
+    <Content Include="font\Flaticon.ttf" />
+    <Content Include="font\Flaticon.woff" />
+    <Content Include="font\Flaticon.woff2" />
+    <Content Include="font\helvetica-neue\helvetica-46-light-italic-587ebdb0ea724.woff" />
+    <Content Include="font\helvetica-neue\helvetica-47-light-condensed-587ebd7b5a6f6.woff" />
+    <Content Include="font\helvetica-neue\helvetica-75-bold-outline-587ebe00b76ba.woff" />
+    <Content Include="font\helvetica-neue\helvetica-neue-5-cufonfonts-webfont.zip" />
+    <Content Include="font\helvetica-neue\HelveticaBlkIt.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-Black.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-BlackCond.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-BlackCondObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-BlackExt.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-BlackExtObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-BoldCondObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-BoldExt.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-BoldExtObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-Condensed.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-CondensedObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-ExtBlackCond.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-ExtBlackCondObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-Extended.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-ExtendedObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-Heavy.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-HeavyCond.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-HeavyCondObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-HeavyExt.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-HeavyExtObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-HeavyItalic.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-Light.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-LightCondObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-LightExt.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-LightExtObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-Medium.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-MediumCond.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-MediumCondObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-MediumExt.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-MediumExtObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-Roman.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-Thin.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-ThinCond.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-ThinCondObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-ThinExtObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-ThinItalic.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-UltraLigCond.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-UltraLigCondObl.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeue-UltraLigExt.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueBold.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueBoldItalic.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueCondensedBlack.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueCondensedBold.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueItalic.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueLight.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueLightItalic.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueMedium.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueUltraLight.woff" />
+    <Content Include="font\helvetica-neue\HelveticaNeueUltraLightItal.woff" />
+    <Content Include="font\helvetica-neue\marker_felt_thin.woff" />
+    <Content Include="font\helvetica-neue\marker_felt_thin.woff2" />
+    <Content Include="font\marker felt\marker_felt_thin.ttf" />
+    <Content Include="font\marker felt\marker_felt_thin.woff" />
+    <Content Include="font\marker felt\marker_felt_thin.woff2" />
+    <Content Include="font\_flaticon.scss" />
+    <None Include="packages.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\LoginPortal\Login.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Views\TempEmployeeMasters\Edit.cshtml" />
+    <Content Include="Views\TempEmployeeMasters\Index.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\MonthlyAttendanceReport\Index.cshtml" />
+    <Content Include="Views\MobileDevice\Index.cshtml" />
+    <Content Include="Views\SFTPData\RoasterData.cshtml" />
+    <Content Include="Views\SFTPData\BiometricData.cshtml" />
+    <Content Include="Views\BannerUploader\BannerUpload.cshtml" />
+    <Content Include="Views\PolygonPortal\SiteWisePolygon.cshtml" />
+    <Content Include="Views\ApproveRejectAttendance\Attendance.cshtml" />
+    <Content Include="Views\AttendanceReport\Report.cshtml" />
+    <Content Include="Views\Dashboard\DashBoard.cshtml" />
+    <Content Include="Views\HRAnnouncement\List.cshtml" />
+    <Content Include="Views\ReasonMasters\Create.cshtml" />
+    <Content Include="Views\ReasonMasters\Edit.cshtml" />
+    <Content Include="Views\ReasonMasters\Index.cshtml" />
+    <Content Include="UploadFiles\WS.csv" />
+    <Content Include="Views\SiteMaster\Edit.cshtml" />
+    <Content Include="Views\SiteMaster\Index.cshtml" />
+    <Content Include="Views\ReasonMasters\Delete.cshtml" />
+    <Content Include="Views\ReasonMasters\Details.cshtml" />
+    <Content Include="Views\RoleMaster\Edit.cshtml" />
+    <Content Include="Views\RoleMaster\Index.cshtml" />
+    <Content Include="Views\SuperMaster\Index.cshtml" />
+    <Content Include="Views\DoublePunchMasters\Index.cshtml" />
+    <Content Include="Views\PolygonPortal\List.cshtml" />
+    <Content Include="Views\LoginPortal\Forgotten.cshtml" />
+    <Content Include="Views\ChangePassword\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="BannerData\" />
+    <Folder Include="ClientDocument\" />
+    <Folder Include="Views\BioMetricAttendance\" />
+    <Folder Include="Views\BirthdayList\" />
+    <Folder Include="Views\Error\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50321</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44327/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties content_4bootstrap_1min_1css_1map__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

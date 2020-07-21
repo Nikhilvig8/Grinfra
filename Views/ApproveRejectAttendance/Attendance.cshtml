@@ -1,0 +1,431 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<GrInfra.Models.AttendanceReport>
+
+@{
+    ViewBag.Title = "Index";
+    TimeSpan FinalInTime = new TimeSpan();
+    TimeSpan FinalOutTime = new TimeSpan();
+}
+<style>
+    .btn-success {
+        color: #fff;
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    .hyper {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+<div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="report-details-cover reports-page">
+            @using (Html.BeginForm())
+            {
+                <div class="report-details">
+                    <div>
+                        <h2>Approve/Reject Attendance Report</h2>
+                    </div>
+                </div>
+                <div class="report-details">
+                    <div class="reports-hdr">
+                        <div class="selectdiv1">
+                            @Html.DropDownList("pagesize", new List<SelectListItem>
+                            {
+                                new SelectListItem{ Text="10", Value = "10" },
+                                new SelectListItem{ Text="50", Value = "50" },
+                                new SelectListItem{ Text="100", Value = "100" },
+                                new SelectListItem{ Text="500", Value = "500" },
+                                new SelectListItem{ Text="1000", Value = "1000" },
+                             }, htmlAttributes: new { id = "search", @class = "form-control select2" })
+                        </div>
+                        <div class="selectdiv">
+                            @Html.DropDownList("branch", (IEnumerable<SelectListItem>)ViewBag.BranchList, "Location", htmlAttributes: new { id = "branch", @class = "form-control select2" })
+                        </div>
+                        <div class="selectdiv">
+                            @Html.DropDownList("emp", (IEnumerable<SelectListItem>)ViewBag.EmployeeList, "Employee", htmlAttributes: new { id = "emp", @class = "form-control select2" })
+                        </div>
+                        <div class="selectdiv">
+                            @Html.DropDownList("head", (IEnumerable<SelectListItem>)ViewBag.HeadList, "Manager", htmlAttributes: new { id = "head", @class = "form-control select2" })
+                        </div>
+                        <div class="form-group date">
+                            @Html.Editor("fromdate", new { htmlAttributes = new { @class = "form-control", id = "datepicker-from", autocomplete = "off", PlaceHolder = "From" } })
+                        </div>
+                        <div class="form-group date">
+                            @Html.Editor("todate", new { htmlAttributes = new { @class = "form-control", id = "datepicker-to", autocomplete = "off", PlaceHolder = "To" } })
+                        </div>
+                        <input type="hidden" name="page" value="1" />
+                        <div class="d-flex">
+                            <input type="submit" id="filter" class="btn red-btn hyper" value="Go" title="Filter Data on Basis of Filter" onclick="" />
+                            <input type="button" id="reset" class="btn dark-grey-btn hyper" value="Reset" title="Removes All Appplied Filters" onclick="location.href='@Url.Action("Attendance", "ApproveRejectAttendance")'" />
+                            <input type="button" id="approveall" class="btn approve hyper" value="Approve" title="Approving Attendance for Checked CheckBoxes" />
+                            <input type="button" id="rejectall" class="btn reject hyper" value="Reject" title="Reject Attendance for Checked CheckBoxes" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="table-responsive cmn-table mb-3">
+                <table class="table table-striped frz-approverejectattendance" id="tblapprovereject">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <input type="button" id="selectall" class="btn selectall" value="Select All" />
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Attendance Date</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Employee Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Employee Name</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Manager Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Manager Name</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">HR Id</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">HR Name</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Department</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Designation</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Branch</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">In Time</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Out Time</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Duration</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Address In</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Address Out</label>
+                            </th>
+                            <th scope="col">
+                                <label class="form-check-label">Attendance Status</label>
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                <center>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="@item.AttendanceLogId" value="@item.AttendanceLogId">
+                                        </label>
+                                    </div>
+                                </center>
+                            </td>
+                            <td>
+                                @{ if (item.AttendanceDate != null)
+                                    {
+                                        DateTime date = Convert.ToDateTime(item.AttendanceDate);
+                                        string date1 = date.ToString("dd-MM-yyyy");
+                                        @Html.DisplayName(date1)
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ManagerId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ManagerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HRId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HRName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Designation)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BUCode) - @Html.DisplayFor(modelItem => item.Branch)
+                            </td>
+                            <td>
+                                @{ if (item.InTime != null)
+                                    {
+                                        DateTime date = Convert.ToDateTime(item.InTime);
+                                        @Html.DisplayName(date.Hour.ToString() + ":" + date.Minute.ToString() + ":" + date.Second.ToString())
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @{ if (item.OutTime != null)
+                                    {
+                                        DateTime date = Convert.ToDateTime(item.OutTime);
+                                        @Html.DisplayName(date.Hour.ToString() + ":" + date.Minute.ToString() + ":" + date.Second.ToString())
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @{
+                                    string k = String.Format("{0:HH:mm}", Convert.ToDateTime(item.Duration));
+                                }
+
+                                @Html.DisplayName(k)
+                            </td>
+                            @*<td>
+            @{ if (item.InTime != null)
+                {
+                    if (item.BioMetricInTime != null)
+                    {
+                        TimeSpan InTime = Convert.ToDateTime(item.InTime).TimeOfDay;
+                        TimeSpan BioMetricInTime = Convert.ToDateTime(item.BioMetricInTime).TimeOfDay;
+                        if (InTime > BioMetricInTime)
+                        {
+                            FinalInTime = BioMetricInTime;
+                            @Html.DisplayName(BioMetricInTime.ToString())
+                        }
+                        else
+                        {
+                            FinalInTime = InTime;
+                            @Html.DisplayName(InTime.ToString())
+                        }
+                    }
+                    else
+                    {
+                        TimeSpan InTime = Convert.ToDateTime(item.InTime).TimeOfDay;
+                        FinalInTime = InTime;
+                        @Html.DisplayName(InTime.ToString())
+                    }
+                }
+                else if (item.BioMetricInTime != null)
+                {
+                    if (item.InTime != null)
+                    {
+                        TimeSpan InTime = Convert.ToDateTime(item.InTime).TimeOfDay;
+                        TimeSpan BioMetricInTime = Convert.ToDateTime(item.BioMetricInTime).TimeOfDay;
+                        if (InTime > BioMetricInTime)
+                        {
+                            FinalInTime = BioMetricInTime;
+                            @Html.DisplayName(BioMetricInTime.ToString())
+                        }
+                        else
+                        {
+                            FinalInTime = InTime;
+                            @Html.DisplayName(InTime.ToString())
+                        }
+                    }
+                    else
+                    {
+                        TimeSpan BioMetricInTime = Convert.ToDateTime(item.BioMetricInTime).TimeOfDay;
+                        FinalInTime = BioMetricInTime;
+                        @Html.DisplayName(BioMetricInTime.ToString())
+                    }
+                }
+            }
+        </td>
+        <td>
+            @{ if (item.OutTime != null)
+                {
+                    if (item.BioMetricOutTime != null)
+                    {
+                        TimeSpan OutTime = Convert.ToDateTime(item.OutTime).TimeOfDay;
+                        TimeSpan BioMetricOutTime = Convert.ToDateTime(item.BioMetricOutTime).TimeOfDay;
+                        if (OutTime > BioMetricOutTime)
+                        {
+                            FinalOutTime = OutTime;
+                            @Html.DisplayName(OutTime.ToString())
+                        }
+                        else
+                        {
+                            FinalOutTime = BioMetricOutTime;
+                            @Html.DisplayName(BioMetricOutTime.ToString())
+                        }
+                    }
+                    else
+                    {
+                        TimeSpan OutTime = Convert.ToDateTime(item.OutTime).TimeOfDay;
+                        FinalOutTime = OutTime;
+                        @Html.DisplayName(OutTime.ToString())
+                    }
+                }
+                else if (item.BioMetricOutTime != null)
+                {
+                    if (item.OutTime != null)
+                    {
+                        TimeSpan OutTime = Convert.ToDateTime(item.OutTime).TimeOfDay;
+                        TimeSpan BioMetricOutTime = Convert.ToDateTime(item.BioMetricOutTime).TimeOfDay;
+                        if (OutTime > BioMetricOutTime)
+                        {
+                            FinalOutTime = OutTime;
+                            @Html.DisplayName(OutTime.ToString())
+                        }
+                        else
+                        {
+                            FinalOutTime = BioMetricOutTime;
+                            @Html.DisplayName(BioMetricOutTime.ToString())
+                        }
+                    }
+                    else
+                    {
+                        TimeSpan BioMetricOutTime = Convert.ToDateTime(item.BioMetricOutTime).TimeOfDay;
+                        FinalOutTime = BioMetricOutTime;
+                        @Html.DisplayName(BioMetricOutTime.ToString())
+                    }
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayName((FinalOutTime - FinalInTime).ToString())
+        </td>*@
+                            <td width="20px">
+                                @if (item.AddressIn != null)
+                                {
+                                    if (item.AddressIn.Length >= 50)
+                                    {
+                                        @item.AddressIn.Substring(0, 50)
+                                        <text> ... </text>
+                                    }
+                                    else
+                                    {
+                                        @item.AddressIn
+                                    }
+                                }
+                                else
+                                {
+                                    @item.AddressIn
+                                }
+                            </td>
+                            <td width="20px">
+                                @if (item.AddressOut != null)
+                                {
+                                    if (item.AddressOut.Length >= 50)
+                                    {
+                                        @item.AddressOut.Substring(0, 50)
+                                        <text> ... </text>
+                                    }
+                                    else
+                                    {
+                                        @item.AddressOut
+                                    }
+                                }
+                                else
+                                {
+                                    @item.AddressOut
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AttendanceStatus)
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-cover d-flex justify-content-between">
+                <div class="pag-text"> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </div>
+
+                @Html.PagedListPager(Model, page => Url.Action("Attendance", new { page, pagesize = ViewBag.pagesize, attendancestatus = ViewBag.attendancestatus, branch = ViewBag.Branch, emp = ViewBag.Employee, fromdate = ViewBag.FromDate, todate = ViewBag.ToDate, head = ViewBag.Head }),PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade cmn-modal" id="instructions" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="budgetModalLabel">Instructions</h5>
+            </div>
+            <div class="modal-body">
+                <div class="modal-main-content">
+                    <h5><b>Compulsory Instructions</b></h5>
+                    <div style="margin-left:2rem">
+                        <ul>
+                            <li>
+                                By default, Current Month Employee Under you With Attendance Status Pending are Shown.
+                            </li>
+                            <li>
+                                Select All Select All the rows shows on the current page and apply actions to them only.
+                            </li>
+                            <li>
+                                For Rejecting Attendance Reasons is compulsory to provide.
+                            </li>
+                            <li>
+                                When Rejecting Multiple Attendance reasons you will give will be same for all the persons for when rejecting multiple attendance please do it carefully.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-flex justify-content-center bttn-box">
+                        <button type="button" class="btn red-btn" data-dismiss="modal" id="close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade cmn-modal" id="rejectreason" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="budgetModalLabel">Reasons</h5>
+            </div>
+            <div class="modal-body">
+                <div class="modal-main-content">
+                    <h5><b>Please Select Reasons For Rejecting the Attendance</b></h5>
+                    <div style="margin-left:2rem" id="rejectreasons">
+                        <ul>
+                            @foreach (var item in ViewBag.RejectList)
+                            {
+                                <li>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="@item.Text" value="@item.Text">
+                                            <label>@item.Text</label>
+                                        </label>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="d-flex justify-content-center bttn-box">
+                        <button type="button" class="btn red-btn" data-dismiss="modal" id="modalOk">Submit</button>
+                        <button type="button" class="btn dark-grey-btn" data-dismiss="modal" id="modalCancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

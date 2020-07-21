@@ -1,0 +1,67 @@
+﻿@model IEnumerable<GrInfra.Models.ReasonMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="report-details-cover">
+                @using (Html.BeginForm())
+                {
+                    <div class="report-details">
+                        <div>
+                            <h2>Reject Reasons</h2>
+                        </div>
+                        <div class="reports-hdr">
+                            <div class="d-flex">
+                                <input type="button" id="reset" class="btn dark-grey-btn hyper" value="Create" onclick="location.href='@Url.Action("Create", "ReasonMasters")'" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            <div class="table-responsive cmn-table mb-3">
+                <table class="table table-striped frz-col">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <text>Reasons</text>
+                            </th>
+                            <th scope="col">
+                                <text>Status</text>
+                            </th>
+                            <th scope="col">
+                                <text>Action</text>
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reasons)
+                                </td>
+                                <td>
+                                    @if (item.isactive == true)
+                                    {
+                                        <span style="color:darkgreen;font-weight:bolder">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="color:darkred;font-weight:bolder">In-Active</span>
+                                    }
+                                </td>
+                                <td>
+                                    <button class="btn btn-light" onclick="location.href='@Url.Action("Edit", "ReasonMasters", new { id = item.id })'"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-light" onclick="location.href='@Url.Action("Delete", "ReasonMasters", new { id = item.id })'"><i class="fa fa-trash fa-2x" style="color:red;"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>

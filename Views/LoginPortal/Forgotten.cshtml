@@ -1,0 +1,101 @@
+﻿@model GrInfra.Models.ForgetPortalModel
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GrInfra Login Page</title>
+
+    <!-- Web Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet" />
+    <link href="~/font/flaticon.css" rel="stylesheet" />
+    <link href="~/font/helvetica-neue/style.css" rel="stylesheet" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/style.css" />
+</head>
+<body class="login-page">
+    <div class="login-content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-12">
+                    <img src="~/images/logo-white_2.png" alt="pwc white logo" />
+                    <div class="about-login-page">
+
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-12">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <center><img src="~/images/logo.png" alt="GRIL white logo" style="width:40%" /></center>
+                        <p class="h4">Forget Password</p>
+
+                        <!-- Email -->
+                        <label>Enter Your EmailID</label>
+                        @Html.EditorFor(model => model.Emailid, new { htmlAttributes = new { @class = "form-control mb-4" } })
+
+                        <!-- Password -->
+                       
+                        <label style="color:red">@ViewBag.ErrorMsg</label>
+                        <div class="d-flex justify-content-left">
+                            <!-- Remember me -->
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @*<div>
+                                            <label>
+                                                <a href="/LoginPortal/Login"> <i class="fas fa-arrow-left"></i> <u><span style="color:red">Sign In</span></u> </a>
+
+                                            </label>
+                                        </div>*@
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>
+                                                <a href="/LoginPortal/Login"> <i class="fas fa-arrow-left"></i> <u><span style="color:red">Sign In</span></u> </a>
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+                        <!-- Sign in button -->
+                        <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
+                        <p class="bottom-text">G R INFRAPROJECTS LIMITED © 2019 All rights reserved.</p>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

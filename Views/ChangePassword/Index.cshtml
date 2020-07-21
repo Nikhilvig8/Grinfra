@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+    <center><img src="~/images/logo.png" alt="GRIL white logo" style="width:10%" /></center>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <p class="h4">Change Password</p>
+    <div class="col-md-4 col-12">
+        <!-- Email -->
+        <label>Old Password</label>
+        @Html.Editor("OldPassword", new { htmlAttributes = new { @class = "form-control mb-4" } })
+
+        <!-- Password -->
+        <label>New Password</label>
+        @Html.Editor("NewPassword", new { htmlAttributes = new { @class = "form-control mb-4" } })
+        <label>Confirm Password</label>
+        @Html.Editor("ConfirmPassword", new { htmlAttributes = new { @class = "form-control mb-4" } })
+        <label style="color:red">@ViewBag.ErrorMsg</label>
+
+
+        <!-- Sign in button -->
+        <button class="btn  btn-info btn-block my-4" style="color:red" type="submit">Update</button>
+        @*<p class="bottom-text">G R INFRAPROJECTS LIMITED © 2019 All rights reserved.</p>*@
+        </div>
+        }
+        
+

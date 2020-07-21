@@ -1,0 +1,283 @@
+﻿@model IEnumerable<GrInfra.Models.HR_Announcement>
+@{
+    ViewBag.Title = "List";
+}
+<style type="text/css">
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            display: none;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+    /* include generated hidden field here */
+    input[type="checkbox"]:checked + input[type="hidden"] + .slider,
+    input[type="checkbox"]:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    /* include generated hidden field here */
+    input[type="checkbox"]:focus + input[type="hidden"] + .slider,
+    input[type="checkbox"]:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    /* include generated hidden field here */
+    input[type="checkbox"]:checked + input[type="hidden"] + .slider:before,
+    input[type="checkbox"]:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+
+
+<div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="report-details-cover">
+            <div class="card">
+                <div class="card-header text-white" style="background-color:navy">
+                    <h6 class="text-uppercase" style="padding:1rem">HR Announcement</h6>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("List", "HRAnnouncement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Title :</label>
+                                <input type="text" class="form-control" id="title" name="title" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label>Description :</label>
+                                <input type="text" class="form-control" id="Description" name="Description" />
+                            </div>
+                            <div class="col-md-6" style="margin-top:5px">
+                                <label>Start Date & Time :</label>
+                                <div class="form-group date">
+                                    @Html.Editor("fromdate", new { htmlAttributes = new { @class = "form-control", id = "datepicker-from", autocomplete = "off", PlaceHolder = "From" } })
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top:5px">
+                                <label>End Date & Time :</label>
+                                <div class="form-group date">
+                                    @Html.Editor("todate", new { htmlAttributes = new { @class = "form-control", id = "datepicker-to", autocomplete = "off", PlaceHolder = "To" } })
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top:5px">
+                                <label>Choose  File:(Image: Jpg,Png,Gif)</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" id="fileupload" name="fileupload" class="custom-file-input" />
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top:5px">
+                                <label>Branch:</label>
+                                <div class="selectdiv">
+                                    @Html.DropDownList("branch", (IEnumerable<SelectListItem>)ViewBag.BranchList, htmlAttributes: new { id = "branch", @class = "form-control select2", @required = "required", multiple = "multiple" })
+                                </div>
+                                <label>@ViewBag.BranchError</label>
+                            </div>
+                            <div class="col-md-12" style="margin-top:5px">
+                                <div class="input-group-append" style="align-content:center;justify-content:center">
+                                    <button type="submit" class="form-control col-1">
+                                        <i class="fa fa-plus-circle"></i> Upload
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top:5px">
+                                <label style="color:red">@ViewBag.Error</label>
+                            </div>
+                        </div>
+                    }
+
+                    <div>
+                        <h2>HR Announcement List</h2>
+                        <div class="table-responsive cmn-table mb-3">
+                            <table class="table table-striped frz-announcement ul-fixed-height">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                        <th>
+                                            Start Date
+                                        </th>
+                                        <th>
+                                            End Date
+                                        </th>
+                                        <th>
+                                            Banner
+                                        </th>
+                                        <th>
+                                            Branch
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.HiddenFor(modelItem => item.id)
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @if (item.Description != null)
+                                                {
+                                                    if (item.Description.Length >= 30)
+                                                    {
+                                                        @item.Description.Substring(0, 30)
+                                                        <text> ... </text>
+                                                    }
+                                                    else
+                                                    {
+                                                        @item.Description
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    @item.Description
+                                                }
+                                            </td>
+                                            <td>
+                                                @{ if (item.FromDate != null)
+                                                    {
+                                                        DateTime date = Convert.ToDateTime(item.FromDate);
+                                                        string date1 = date.ToString("dd-MM-yyyy HH:mm:ss");
+                                                        @Html.DisplayName(date1)
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+                                                @{ if (item.ToDate != null)
+                                                    {
+                                                        DateTime date = Convert.ToDateTime(item.ToDate);
+                                                        string date1 = date.ToString("dd-MM-yyyy HH:mm:ss");
+                                                        @Html.DisplayName(date1)
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.Image == "-")
+                                                {
+                                                    <text>No Image</text>
+                                                }
+                                                else
+                                                {
+                                                    <img src="@Url.Content(@item.Image)" height="100" width="100" />
+                                                }
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    @{
+                                                        string[] branch = item.BranchId.Split(',');
+                                                        foreach (string id in branch)
+                                                        {
+                                                            <li>@id</li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                @if (@item.isactive == true)
+                                                {
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked />
+                                                        <div class="slider round"></div>
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="switch">
+                                                        <input type="checkbox" />
+                                                        <div class="slider round"></div>
+                                                    </label>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Delete","HRAnnouncement",new { id = @item.id })"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade cmn-modal" id="instructions" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="budgetModalLabel">Instructions</h5>
+            </div>
+            <div class="modal-body">
+                <div class="modal-main-content">
+                    <h5><b>Instructions to Follow during Upload Process</b></h5>
+                    <div style="margin-left:2rem">
+                        <ul>
+                            <li>
+                                For <b>PNG, GIF</b> & <b>JPG</b> Format Max File Size - <b>4 MB</b>
+                            </li>
+                            <li>
+                                Please Select Atleast <b>One</b> Branch Before Submitting
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-flex justify-content-center bttn-box">
+                        <button type="button" class="btn red-btn" data-dismiss="modal" id="modalOk">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1645 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GInfraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GInfra.dbo.AppversionMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AppversionMaster">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="AppVesrionId" />
+          </Key>
+          <Property Name="AutoId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppVesrionId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AppVersionUrl" Type="nvarchar(max)" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="AttendanceLogsNewForMobile">
+          <Key>
+            <PropertyRef Name="AttendanceLogId" />
+          </Key>
+          <Property Name="AttendanceLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InTime" Type="datetime" />
+          <Property Name="OutTime" Type="datetime" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="255" />
+          <Property Name="HeadId" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressIn" Type="nvarchar" MaxLength="255" />
+          <Property Name="LattitudeIn" Type="nvarchar" MaxLength="255" />
+          <Property Name="LongitudeIn" Type="nvarchar" MaxLength="255" />
+          <Property Name="AddressOut" Type="nvarchar" MaxLength="255" />
+          <Property Name="LattitudeOut" Type="nvarchar" MaxLength="255" />
+          <Property Name="LongitudeOut" Type="nvarchar" MaxLength="255" />
+          <Property Name="AttendanceStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="Modeofpunchin" Type="varchar" MaxLength="50" />
+          <Property Name="InImage" Type="varchar(max)" />
+          <Property Name="shiftintime" Type="datetime" />
+          <Property Name="shiftouttime" Type="datetime" />
+          <Property Name="ManagerActionOn" Type="datetime" />
+          <Property Name="ManagerRemarks" Type="varchar(max)" />
+          <Property Name="PolygonIn" Type="varchar" MaxLength="50" />
+          <Property Name="PolygonOut" Type="varchar" MaxLength="50" />
+          <Property Name="MarkedByIn" Type="varchar" MaxLength="50" />
+          <Property Name="MarkedByOut" Type="varchar" MaxLength="50" />
+          <Property Name="ModeofpunchOut" Type="varchar" MaxLength="50" />
+          <Property Name="BioMetricIn" Type="datetime" />
+          <Property Name="BioMetricOut" Type="datetime" />
+          <Property Name="ActionHappen" Type="varchar" MaxLength="50" />
+          <Property Name="ByWhomActiondone" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="attendancestatusmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Banner_image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imageUrl" Type="varchar(max)" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="Extension" Type="varchar" MaxLength="50" />
+          <Property Name="Fromdate" Type="datetime" />
+          <Property Name="Todate" Type="datetime" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="BackgroundImage" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="BiometricAttendance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="varchar" MaxLength="50" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="PunchInDate" Type="date" />
+          <Property Name="PunchInTime" Type="time" Precision="7" />
+          <Property Name="PunchOutDate" Type="date" />
+          <Property Name="PunchOutTime" Type="time" Precision="7" />
+          <Property Name="CustRegularized" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DoublePunchMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BUCode" Type="varchar" MaxLength="50" />
+          <Property Name="DoublePunchMechanism" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmployeeMaster">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpName" Type="varchar" MaxLength="100" />
+          <Property Name="DateOfJoining" Type="varchar" MaxLength="50" />
+          <Property Name="EmpEmailId" Type="varchar" MaxLength="50" />
+          <Property Name="EmpMobile" Type="varchar" MaxLength="10" />
+          <Property Name="MangerID" Type="varchar" MaxLength="50" />
+          <Property Name="MangerName" Type="varchar" MaxLength="100" />
+          <Property Name="MangerEmail" Type="varchar" MaxLength="50" />
+          <Property Name="ManagerMobile" Type="varchar" MaxLength="10" />
+          <Property Name="HRID" Type="varchar" MaxLength="50" />
+          <Property Name="HRName" Type="varchar" MaxLength="50" />
+          <Property Name="HRManagerEmail" Type="varchar" MaxLength="50" />
+          <Property Name="HRManagerMobile" Type="varchar" MaxLength="10" />
+          <Property Name="DateOfBirth" Type="varchar" MaxLength="50" />
+          <Property Name="Company" Type="varchar" MaxLength="100" />
+          <Property Name="Department" Type="varchar" MaxLength="100" />
+          <Property Name="GradeCode" Type="varchar" MaxLength="10" />
+          <Property Name="Branch" Type="varchar" MaxLength="100" />
+          <Property Name="Designation" Type="varchar" MaxLength="100" />
+          <Property Name="Sex" Type="varchar" MaxLength="10" />
+          <Property Name="BUCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HR_Announcement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="FromDate" Type="datetime" />
+          <Property Name="ToDate" Type="datetime" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="BranchId" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GInfra.dbo.iosAppversionMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="iosAppversionMaster">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="AppVesrionId" />
+          </Key>
+          <Property Name="AutoId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppVesrionId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AppVersionUrl" Type="nvarchar(max)" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="MasterPassword">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="50" />
+          <Property Name="Authtokenid" Type="varchar(max)" />
+          <Property Name="AuthtokenStatus" Type="varchar(max)" />
+          <Property Name="oldAuthtoken" Type="varchar(max)" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+          <Property Name="DeviceToken" Type="nvarchar(max)" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="Super" Type="bit" />
+        </EntityType>
+        <EntityType Name="MobileDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Userid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IMEI" Type="varchar(max)" Nullable="false" />
+          <Property Name="Battery" Type="int" Nullable="false" />
+          <Property Name="LastActivity" Type="datetime" Nullable="false" />
+          <Property Name="LastLocation" Type="varchar(max)" Nullable="false" />
+          <Property Name="AppVersion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MobileDevicelogs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="50" />
+          <Property Name="Authtokenid" Type="varchar(max)" />
+          <Property Name="DeviceToken" Type="nvarchar(max)" />
+          <Property Name="CurrDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Monthly">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MemberName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Curr_datetime" Type="datetime" />
+          <Property Name="Userid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="varchar(max)" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Polygon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Siteid" Type="int" Nullable="false" />
+          <Property Name="Lattitude" Type="varchar(max)" />
+          <Property Name="Longitude" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ReasonMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reasons" Type="varchar(max)" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Roaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeId" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="ShiftTimming" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RoleDefine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+          <Property Name="RoleCode" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="ShiftMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueShift" Type="varchar" MaxLength="50" />
+          <Property Name="SFShift" Type="varchar" MaxLength="100" />
+          <Property Name="ShiftExternalCode" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SiteMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BUCode" Type="varchar" MaxLength="50" />
+          <Property Name="BUDescription" Type="varchar" MaxLength="100" />
+          <Property Name="Workinghours" Type="float" />
+          <Property Name="GracePeriod" Type="float" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="lattitude" Type="varchar" MaxLength="50" />
+          <Property Name="longitute" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="BioMetricDataPullPush" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="BioMetricDataPullPushtemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="deletedata" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Get_UserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="authKey" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getAttendanceListByReportingHead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HeadId" Type="varchar" Mode="In" />
+          <Parameter Name="employee" Type="varchar" Mode="In" />
+          <Parameter Name="fromdate" Type="varchar" Mode="In" />
+          <Parameter Name="todate" Type="varchar" Mode="In" />
+          <Parameter Name="status" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetBirthdayData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getuserattendancebyhead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="headid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="InsertAttendanceDATA_NEW12am" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertAttendanceDATA_NEW12pm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertAttendanceDATA_NEWtemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertAttendanceIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="varchar" Mode="In" />
+          <Parameter Name="InTime" Type="varchar" Mode="In" />
+          <Parameter Name="HeadId" Type="varchar" Mode="In" />
+          <Parameter Name="AddressIn" Type="varchar" Mode="In" />
+          <Parameter Name="LattitudeIn" Type="varchar" Mode="In" />
+          <Parameter Name="LongitudeIn" Type="varchar" Mode="In" />
+          <Parameter Name="WorkStatus" Type="varchar" Mode="In" />
+          <Parameter Name="modeofpunchin" Type="varchar" Mode="In" />
+          <Parameter Name="punchinphotopath" Type="varchar(max)" Mode="In" />
+          <Parameter Name="PolygonIn" Type="varchar(max)" Mode="In" />
+          <Parameter Name="action" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="InsertAttendanceOut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="varchar" Mode="In" />
+          <Parameter Name="OutTime" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+          <Parameter Name="AddressOut" Type="varchar" Mode="In" />
+          <Parameter Name="LattitudeOut" Type="varchar" Mode="In" />
+          <Parameter Name="LongitudeOut" Type="varchar" Mode="In" />
+          <Parameter Name="AttendanceLogId" Type="varchar" Mode="In" />
+          <Parameter Name="modeofpunchin" Type="varchar" Mode="In" />
+          <Parameter Name="PolygonOut" Type="varchar" Mode="In" />
+          <Parameter Name="action" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Sftpemployeepassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_ApproveorRejectAttendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AttendanceLogId" Type="varchar" Mode="In" />
+          <Parameter Name="managercomment" Type="varchar(max)" Mode="In" />
+          <Parameter Name="action" Type="varchar(max)" Mode="In" />
+          <Parameter Name="userid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Attendancelistbyuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LoginId" Type="varchar" Mode="In" />
+          <Parameter Name="fromdate" Type="varchar" Mode="In" />
+          <Parameter Name="todate" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_bannerimage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_checkcurrentstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_checkhours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_forgetpassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dob" Type="varchar" Mode="In" />
+          <Parameter Name="tmc" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_getheaddatabyuserid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_hrnotification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="branch" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_InsertPolygon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PolygonJson" Type="varchar(max)" Mode="In" />
+          <Parameter Name="SiteId" Type="int" Mode="In" />
+          <Parameter Name="ERROR" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="authtoken" Type="varchar" Mode="In" />
+          <Parameter Name="devicetoken" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_logintemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="authtoken" Type="varchar" Mode="In" />
+          <Parameter Name="devicetoken" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_mobiledetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Userid" Type="varchar" Mode="In" />
+          <Parameter Name="IMEI" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Battery" Type="int" Mode="In" />
+          <Parameter Name="LastActivity" Type="varchar(max)" Mode="In" />
+          <Parameter Name="LastLocation" Type="varchar(max)" Mode="In" />
+          <Parameter Name="AppVersion" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_mobiledevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_MonthlyAttendanceReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Role" Type="varchar" Mode="In" />
+          <Parameter Name="LoginId" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeeId" Type="varchar" Mode="In" />
+          <Parameter Name="ManagerId" Type="varchar" Mode="In" />
+          <Parameter Name="HRId" Type="varchar" Mode="In" />
+          <Parameter Name="Branch" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_notification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Userid" Type="varchar" Mode="In" />
+          <Parameter Name="Type" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Title" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Description" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_polygon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="branch" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ReasonsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_updateappversion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="type" Type="varchar" Mode="In" />
+          <Parameter Name="appversionid" Type="varchar" Mode="In" />
+          <Parameter Name="appversionurl" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_updateUserPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Oldpassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="GInfraModelStoreContainer">
+          <EntitySet Name="AttendanceLogsNewForMobile" EntityType="Self.AttendanceLogsNewForMobile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="attendancestatusmaster" EntityType="Self.attendancestatusmaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banner_image" EntityType="Self.Banner_image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BiometricAttendance" EntityType="Self.BiometricAttendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoublePunchMaster" EntityType="Self.DoublePunchMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HR_Announcement" EntityType="Self.HR_Announcement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterPassword" EntityType="Self.MasterPassword" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MobileDetails" EntityType="Self.MobileDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MobileDevicelogs" EntityType="Self.MobileDevicelogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Monthly" EntityType="Self.Monthly" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Polygon" EntityType="Self.Polygon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReasonMaster" EntityType="Self.ReasonMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roaster" EntityType="Self.Roaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleDefine" EntityType="Self.RoleDefine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShiftMaster" EntityType="Self.ShiftMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteMaster" EntityType="Self.SiteMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppversionMaster" EntityType="Self.AppversionMaster" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AppversionMaster].[AutoId] AS [AutoId], 
+    [AppversionMaster].[AppVesrionId] AS [AppVesrionId], 
+    [AppversionMaster].[AppVersionUrl] AS [AppVersionUrl], 
+    [AppversionMaster].[Status] AS [Status]
+    FROM [dbo].[AppversionMaster] AS [AppversionMaster]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="iosAppversionMaster" EntityType="Self.iosAppversionMaster" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [iosAppversionMaster].[AutoId] AS [AutoId], 
+    [iosAppversionMaster].[AppVesrionId] AS [AppVesrionId], 
+    [iosAppversionMaster].[AppVersionUrl] AS [AppVersionUrl], 
+    [iosAppversionMaster].[Status] AS [Status]
+    FROM [dbo].[iosAppversionMaster] AS [iosAppversionMaster]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GInfraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GInfraEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttendanceLogsNewForMobiles" EntityType="GInfraModel.AttendanceLogsNewForMobile" />
+          <EntitySet Name="attendancestatusmasters" EntityType="GInfraModel.attendancestatusmaster" />
+          <EntitySet Name="Banner_image" EntityType="GInfraModel.Banner_image" />
+          <EntitySet Name="BiometricAttendances" EntityType="GInfraModel.BiometricAttendance" />
+          <EntitySet Name="DoublePunchMasters" EntityType="GInfraModel.DoublePunchMaster" />
+          <EntitySet Name="HR_Announcement" EntityType="GInfraModel.HR_Announcement" />
+          <EntitySet Name="MasterPasswords" EntityType="GInfraModel.MasterPassword" />
+          <EntitySet Name="MobileDevicelogs" EntityType="GInfraModel.MobileDevicelog" />
+          <EntitySet Name="Monthlies" EntityType="GInfraModel.Monthly" />
+          <EntitySet Name="Polygons" EntityType="GInfraModel.Polygon" />
+          <EntitySet Name="ReasonMasters" EntityType="GInfraModel.ReasonMaster" />
+          <EntitySet Name="RoleDefines" EntityType="GInfraModel.RoleDefine" />
+          <EntitySet Name="ShiftMasters" EntityType="GInfraModel.ShiftMaster" />
+          <EntitySet Name="AppversionMasters" EntityType="GInfraModel.AppversionMaster" />
+          <FunctionImport Name="BioMetricDataPullPush" />
+          <FunctionImport Name="BioMetricDataPullPushtemp" />
+          <FunctionImport Name="deletedata">
+          <Parameter Name="userid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_UserId" ReturnType="Collection(String)">
+          <Parameter Name="authKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getAttendanceListByReportingHead" ReturnType="Collection(GInfraModel.getAttendanceListByReportingHead_Result)">
+            <Parameter Name="HeadId" Mode="In" Type="String" />
+            <Parameter Name="employee" Mode="In" Type="String" />
+            <Parameter Name="fromdate" Mode="In" Type="String" />
+            <Parameter Name="todate" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetBirthdayData" ReturnType="Collection(GInfraModel.GetBirthdayData_Result)">
+          <Parameter Name="userid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getuserattendancebyhead" ReturnType="Collection(GInfraModel.getuserattendancebyhead_Result)">
+          <Parameter Name="headid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertAttendanceDATA_NEW12am" />
+          <FunctionImport Name="InsertAttendanceDATA_NEW12pm" />
+          <FunctionImport Name="InsertAttendanceDATA_NEWtemp" />
+          <FunctionImport Name="Sftpemployeepassword" />
+          <FunctionImport Name="sp_ApproveorRejectAttendance" ReturnType="Collection(GInfraModel.sp_ApproveorRejectAttendance_Result)">
+            <Parameter Name="AttendanceLogId" Mode="In" Type="String" />
+            <Parameter Name="managercomment" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="userid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Attendancelistbyuser" ReturnType="Collection(GInfraModel.sp_Attendancelistbyuser_Result)">
+            <Parameter Name="LoginId" Mode="In" Type="String" />
+            <Parameter Name="fromdate" Mode="In" Type="String" />
+            <Parameter Name="todate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_bannerimage" ReturnType="Collection(GInfraModel.sp_bannerimage_Result)" />
+          <FunctionImport Name="sp_checkcurrentstatus" ReturnType="Collection(GInfraModel.sp_checkcurrentstatus_Result)">
+          <Parameter Name="userid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_checkhours" />
+          <FunctionImport Name="sp_forgetpassword" ReturnType="Collection(String)">
+            <Parameter Name="dob" Mode="In" Type="String" />
+            <Parameter Name="tmc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getheaddatabyuserid" ReturnType="Collection(GInfraModel.sp_getheaddatabyuserid_Result)">
+          <Parameter Name="userid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_hrnotification" ReturnType="Collection(GInfraModel.sp_hrnotification_Result)">
+          <Parameter Name="branch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_InsertPolygon" ReturnType="Collection(Int32)">
+            <Parameter Name="PolygonJson" Mode="In" Type="String" />
+            <Parameter Name="SiteId" Mode="In" Type="Int32" />
+            <Parameter Name="ERROR" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_login" ReturnType="Collection(GInfraModel.sp_login_Result)">
+            <Parameter Name="userid" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="authtoken" Mode="In" Type="String" />
+            <Parameter Name="devicetoken" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_logintemp" ReturnType="Collection(GInfraModel.sp_logintemp_Result)">
+            <Parameter Name="userid" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="authtoken" Mode="In" Type="String" />
+            <Parameter Name="devicetoken" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_mobiledevice">
+          <Parameter Name="userid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_MonthlyAttendanceReports" ReturnType="Collection(GInfraModel.Sp_MonthlyAttendanceReports_Result)">
+            <Parameter Name="Role" Mode="In" Type="String" />
+            <Parameter Name="LoginId" Mode="In" Type="String" />
+            <Parameter Name="EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="ManagerId" Mode="In" Type="String" />
+            <Parameter Name="HRId" Mode="In" Type="String" />
+            <Parameter Name="Branch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_polygon" ReturnType="Collection(GInfraModel.sp_polygon_Result)">
+          <Parameter Name="branch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ReasonsList" ReturnType="Collection(GInfraModel.sp_ReasonsList_Result)" />
+          <FunctionImport Name="sp_updateUserPassword" ReturnType="Collection(GInfraModel.sp_updateUserPassword_Result)">
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Oldpassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertAttendanceIn" ReturnType="Collection(GInfraModel.InsertAttendanceIn_Result)">
+            <Parameter Name="EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="InTime" Mode="In" Type="String" />
+            <Parameter Name="HeadId" Mode="In" Type="String" />
+            <Parameter Name="AddressIn" Mode="In" Type="String" />
+            <Parameter Name="LattitudeIn" Mode="In" Type="String" />
+            <Parameter Name="LongitudeIn" Mode="In" Type="String" />
+            <Parameter Name="WorkStatus" Mode="In" Type="String" />
+            <Parameter Name="modeofpunchin" Mode="In" Type="String" />
+            <Parameter Name="punchinphotopath" Mode="In" Type="String" />
+            <Parameter Name="PolygonIn" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertAttendanceOut" ReturnType="Collection(GInfraModel.InsertAttendanceOut_Result)">
+            <Parameter Name="EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="OutTime" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="AddressOut" Mode="In" Type="String" />
+            <Parameter Name="LattitudeOut" Mode="In" Type="String" />
+            <Parameter Name="LongitudeOut" Mode="In" Type="String" />
+            <Parameter Name="AttendanceLogId" Mode="In" Type="String" />
+            <Parameter Name="modeofpunchin" Mode="In" Type="String" />
+            <Parameter Name="PolygonOut" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Notifications" EntityType="GInfraModel.Notification" />
+          <FunctionImport Name="sp_notification">
+            <Parameter Name="Userid" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="iosAppversionMasters" EntityType="GInfraModel.iosAppversionMaster" />
+          <FunctionImport Name="sp_updateappversion" ReturnType="Collection(String)">
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="appversionid" Mode="In" Type="String" />
+            <Parameter Name="appversionurl" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="MobileDetails" EntityType="GInfraModel.MobileDetail" />
+          <FunctionImport Name="sp_mobiledetails" ReturnType="Collection(GInfraModel.sp_mobiledetails_Result)">
+            <Parameter Name="Userid" Mode="In" Type="String" />
+            <Parameter Name="IMEI" Mode="In" Type="String" />
+            <Parameter Name="Battery" Mode="In" Type="Int32" />
+            <Parameter Name="LastActivity" Mode="In" Type="String" />
+            <Parameter Name="LastLocation" Mode="In" Type="String" />
+            <Parameter Name="AppVersion" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Roasters" EntityType="GInfraModel.Roaster" />
+          <EntitySet Name="EmployeeMasters" EntityType="GInfraModel.EmployeeMaster" />
+          <EntitySet Name="SiteMasters" EntityType="GInfraModel.SiteMaster" />
+        </EntityContainer>
+        <EntityType Name="AttendanceLogsNewForMobile">
+          <Key>
+            <PropertyRef Name="AttendanceLogId" />
+          </Key>
+          <Property Name="AttendanceLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttendanceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmployeeId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InTime" Type="DateTime" Precision="3" />
+          <Property Name="OutTime" Type="DateTime" Precision="3" />
+          <Property Name="Duration" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HeadId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressIn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LattitudeIn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LongitudeIn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AddressOut" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LattitudeOut" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LongitudeOut" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AttendanceStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Modeofpunchin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="shiftintime" Type="DateTime" Precision="3" />
+          <Property Name="shiftouttime" Type="DateTime" Precision="3" />
+          <Property Name="ManagerActionOn" Type="DateTime" Precision="3" />
+          <Property Name="ManagerRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PolygonIn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PolygonOut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MarkedByIn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MarkedByOut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModeofpunchOut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BioMetricIn" Type="DateTime" Precision="3" />
+          <Property Name="BioMetricOut" Type="DateTime" Precision="3" />
+          <Property Name="ActionHappen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ByWhomActiondone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="attendancestatusmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Banner_image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fromdate" Type="DateTime" Precision="3" />
+          <Property Name="Todate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BackgroundImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BiometricAttendance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="PunchInDate" Type="DateTime" Precision="0" />
+          <Property Name="PunchInTime" Type="Time" Precision="7" />
+          <Property Name="PunchOutDate" Type="DateTime" Precision="0" />
+          <Property Name="PunchOutTime" Type="Time" Precision="7" />
+          <Property Name="CustRegularized" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DoublePunchMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BUCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoublePunchMechanism" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HR_Announcement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FromDate" Type="DateTime" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Precision="3" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BranchId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MasterPassword">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Authtokenid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AuthtokenStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="oldAuthtoken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="Super" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="MobileDevicelog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Authtokenid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Monthly">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Polygon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Siteid" Type="Int32" Nullable="false" />
+          <Property Name="Lattitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ReasonMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reasons" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="RoleDefine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ShiftMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueShift" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SFShift" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShiftExternalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AppversionMaster">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="AppVesrionId" />
+          </Key>
+          <Property Name="AutoId" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppVesrionId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppVersionUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="getAttendanceListByReportingHead_Result">
+          <Property Type="Int32" Name="AttendanceLogId" Nullable="false" />
+          <Property Type="DateTime" Name="AttendanceDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="EmployeeId" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="InTime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="OutTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Duration" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="HeadId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="AddressIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LattitudeIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LongitudeIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="AddressOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LattitudeOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LongitudeOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="AttendanceStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Modeofpunchin" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InImage" Nullable="false" />
+          <Property Type="DateTime" Name="shiftintime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="shiftouttime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ManagerActionOn" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ManagerRemarks" Nullable="false" />
+          <Property Type="String" Name="PolygonIn" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PolygonOut" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmpName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MarkedByIn" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MarkedByOut" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeofpunchOut" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Designation" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetBirthdayData_Result">
+          <Property Type="String" Name="EmployeeCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BirthdayDate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Branch" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CmpMail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MangerID" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getuserattendancebyhead_Result">
+          <Property Type="String" Name="EmployeeId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmpName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="AttendanceLogId" Nullable="false" />
+          <Property Type="DateTime" Name="AttendanceDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Designation" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="InTime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="OutTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Duration" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="HeadId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="AddressIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LattitudeIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LongitudeIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="AddressOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LattitudeOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LongitudeOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="AttendanceStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Modeofpunchin" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeofpunchOut" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InImage" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_ApproveorRejectAttendance_Result">
+          <Property Type="Boolean" Name="ReturnCode" Nullable="true" />
+          <Property Type="String" Name="ReturnMessage" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Attendancelistbyuser_Result">
+          <Property Type="Int32" Name="AttendanceLogId" Nullable="false" />
+          <Property Type="DateTime" Name="AttendanceDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="EmployeeId" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="InTime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="OutTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Duration" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="HeadId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="AddressIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LattitudeIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LongitudeIn" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="AddressOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LattitudeOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LongitudeOut" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="AttendanceStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Modeofpunchin" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InImage" Nullable="false" />
+          <Property Type="DateTime" Name="shiftintime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="shiftouttime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ManagerActionOn" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ManagerRemarks" Nullable="false" />
+          <Property Type="String" Name="PolygonIn" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PolygonOut" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmpName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MarkedByIn" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MarkedByOut" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeofpunchOut" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Designation" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_bannerimage_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="imageUrl" Nullable="true" />
+          <Property Type="Boolean" Name="isactive" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="true" />
+          <Property Type="String" Name="Extension" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Fromdate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Todate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="BackgroundImage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_checkcurrentstatus_Result">
+          <Property Type="DateTime" Name="InTime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="OutTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AttendanceLogId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_getheaddatabyuserid_Result">
+          <Property Type="String" Name="EmployeeId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserNameMail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ReportingHeadId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReportingHeadName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ReportingHeadMail" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_hrnotification_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" />
+          <Property Type="Boolean" Name="isactive" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="DateTime" Name="FromDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ToDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="BranchId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_login_Result">
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="Message" Nullable="false" MaxLength="23" />
+        </ComplexType>
+        <ComplexType Name="sp_logintemp_Result">
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="Message" Nullable="false" MaxLength="23" />
+        </ComplexType>
+        <ComplexType Name="Sp_MonthlyAttendanceReports_Result">
+          <Property Type="String" Name="EmpName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DateOfJoining" Nullable="true" />
+          <Property Type="String" Name="BUDescription" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Absent" Nullable="true" />
+          <Property Type="Int32" Name="WO" Nullable="true" />
+          <Property Type="Int32" Name="Present" Nullable="true" />
+          <Property Type="Int32" Name="TDP" Nullable="true" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="true" />
+          <Property Type="String" Name="HRID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HRName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MangerID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MangerName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmpEmailId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmpMobile" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Branch" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Designation" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BUCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmployeeId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="C1" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C2" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C3" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C4" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C5" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C6" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C7" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C8" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C9" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C10" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C11" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C12" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C13" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C14" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C15" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C16" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C17" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C18" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C19" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C20" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C21" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C22" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C23" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C24" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C25" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C26" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C27" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C28" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C29" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C30" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="C31" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="sp_polygon_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="siteid" Nullable="false" />
+          <Property Type="String" Name="lattitude" Nullable="true" />
+          <Property Type="String" Name="longitude" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_ReasonsList_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="reasons" Nullable="true" />
+          <Property Type="Boolean" Name="isactive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_updateUserPassword_Result">
+          <Property Type="String" Name="returnvalue" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="returnmessage" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="InsertAttendanceIn_Result">
+          <Property Type="String" Name="returncode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="returnmessage" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="InsertAttendanceOut_Result">
+          <Property Type="String" Name="returncode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="returnmessage" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Curr_datetime" Type="DateTime" Precision="3" />
+          <Property Name="Userid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isactive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="iosAppversionMaster">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="AppVesrionId" />
+          </Key>
+          <Property Name="AutoId" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppVesrionId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppVersionUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MobileDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Userid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IMEI" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Battery" Type="Int32" Nullable="false" />
+          <Property Name="LastActivity" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLocation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AppVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="sp_mobiledetails_Result">
+          <Property Type="String" Name="returncode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="returnmessage" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Roaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShiftTimming" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmployeeMaster">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfJoining" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpMobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MangerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MangerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MangerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerMobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HRID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HRName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HRManagerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HRManagerMobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GradeCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BUCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SiteMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BUCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BUDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Workinghours" Type="Double" />
+          <Property Name="GracePeriod" Type="Double" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="lattitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="longitute" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GInfraModelStoreContainer" CdmEntityContainer="GInfraEntities">
+          <EntitySetMapping Name="AttendanceLogsNewForMobiles">
+            <EntityTypeMapping TypeName="GInfraModel.AttendanceLogsNewForMobile">
+              <MappingFragment StoreEntitySet="AttendanceLogsNewForMobile">
+                <ScalarProperty Name="ByWhomActiondone" ColumnName="ByWhomActiondone" />
+                <ScalarProperty Name="ActionHappen" ColumnName="ActionHappen" />
+                <ScalarProperty Name="BioMetricOut" ColumnName="BioMetricOut" />
+                <ScalarProperty Name="BioMetricIn" ColumnName="BioMetricIn" />
+                <ScalarProperty Name="ModeofpunchOut" ColumnName="ModeofpunchOut" />
+                <ScalarProperty Name="MarkedByOut" ColumnName="MarkedByOut" />
+                <ScalarProperty Name="MarkedByIn" ColumnName="MarkedByIn" />
+                <ScalarProperty Name="PolygonOut" ColumnName="PolygonOut" />
+                <ScalarProperty Name="PolygonIn" ColumnName="PolygonIn" />
+                <ScalarProperty Name="ManagerRemarks" ColumnName="ManagerRemarks" />
+                <ScalarProperty Name="ManagerActionOn" ColumnName="ManagerActionOn" />
+                <ScalarProperty Name="shiftouttime" ColumnName="shiftouttime" />
+                <ScalarProperty Name="shiftintime" ColumnName="shiftintime" />
+                <ScalarProperty Name="InImage" ColumnName="InImage" />
+                <ScalarProperty Name="Modeofpunchin" ColumnName="Modeofpunchin" />
+                <ScalarProperty Name="AttendanceStatus" ColumnName="AttendanceStatus" />
+                <ScalarProperty Name="LongitudeOut" ColumnName="LongitudeOut" />
+                <ScalarProperty Name="LattitudeOut" ColumnName="LattitudeOut" />
+                <ScalarProperty Name="AddressOut" ColumnName="AddressOut" />
+                <ScalarProperty Name="LongitudeIn" ColumnName="LongitudeIn" />
+                <ScalarProperty Name="LattitudeIn" ColumnName="LattitudeIn" />
+                <ScalarProperty Name="AddressIn" ColumnName="AddressIn" />
+                <ScalarProperty Name="HeadId" ColumnName="HeadId" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+                <ScalarProperty Name="AttendanceLogId" ColumnName="AttendanceLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="attendancestatusmasters">
+            <EntityTypeMapping TypeName="GInfraModel.attendancestatusmaster">
+              <MappingFragment StoreEntitySet="attendancestatusmaster">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banner_image">
+            <EntityTypeMapping TypeName="GInfraModel.Banner_image">
+              <MappingFragment StoreEntitySet="Banner_image">
+                <ScalarProperty Name="BackgroundImage" ColumnName="BackgroundImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Todate" ColumnName="Todate" />
+                <ScalarProperty Name="Fromdate" ColumnName="Fromdate" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BiometricAttendances">
+            <EntityTypeMapping TypeName="GInfraModel.BiometricAttendance">
+              <MappingFragment StoreEntitySet="BiometricAttendance">
+                <ScalarProperty Name="CustRegularized" ColumnName="CustRegularized" />
+                <ScalarProperty Name="PunchOutTime" ColumnName="PunchOutTime" />
+                <ScalarProperty Name="PunchOutDate" ColumnName="PunchOutDate" />
+                <ScalarProperty Name="PunchInTime" ColumnName="PunchInTime" />
+                <ScalarProperty Name="PunchInDate" ColumnName="PunchInDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoublePunchMasters">
+            <EntityTypeMapping TypeName="GInfraModel.DoublePunchMaster">
+              <MappingFragment StoreEntitySet="DoublePunchMaster">
+                <ScalarProperty Name="DoublePunchMechanism" ColumnName="DoublePunchMechanism" />
+                <ScalarProperty Name="BUCode" ColumnName="BUCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HR_Announcement">
+            <EntityTypeMapping TypeName="GInfraModel.HR_Announcement">
+              <MappingFragment StoreEntitySet="HR_Announcement">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterPasswords">
+            <EntityTypeMapping TypeName="GInfraModel.MasterPassword">
+              <MappingFragment StoreEntitySet="MasterPassword">
+                <ScalarProperty Name="Super" ColumnName="Super" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="oldAuthtoken" ColumnName="oldAuthtoken" />
+                <ScalarProperty Name="AuthtokenStatus" ColumnName="AuthtokenStatus" />
+                <ScalarProperty Name="Authtokenid" ColumnName="Authtokenid" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MobileDevicelogs">
+            <EntityTypeMapping TypeName="GInfraModel.MobileDevicelog">
+              <MappingFragment StoreEntitySet="MobileDevicelogs">
+                <ScalarProperty Name="CurrDate" ColumnName="CurrDate" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="Authtokenid" ColumnName="Authtokenid" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Monthlies">
+            <EntityTypeMapping TypeName="GInfraModel.Monthly">
+              <MappingFragment StoreEntitySet="Monthly">
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Polygons">
+            <EntityTypeMapping TypeName="GInfraModel.Polygon">
+              <MappingFragment StoreEntitySet="Polygon">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Lattitude" ColumnName="Lattitude" />
+                <ScalarProperty Name="Siteid" ColumnName="Siteid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReasonMasters">
+            <EntityTypeMapping TypeName="GInfraModel.ReasonMaster">
+              <MappingFragment StoreEntitySet="ReasonMaster">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="Reasons" ColumnName="Reasons" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleDefines">
+            <EntityTypeMapping TypeName="GInfraModel.RoleDefine">
+              <MappingFragment StoreEntitySet="RoleDefine">
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShiftMasters">
+            <EntityTypeMapping TypeName="GInfraModel.ShiftMaster">
+              <MappingFragment StoreEntitySet="ShiftMaster">
+                <ScalarProperty Name="ShiftExternalCode" ColumnName="ShiftExternalCode" />
+                <ScalarProperty Name="SFShift" ColumnName="SFShift" />
+                <ScalarProperty Name="UniqueShift" ColumnName="UniqueShift" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppversionMasters">
+            <EntityTypeMapping TypeName="GInfraModel.AppversionMaster">
+              <MappingFragment StoreEntitySet="AppversionMaster">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AppVersionUrl" ColumnName="AppVersionUrl" />
+                <ScalarProperty Name="AppVesrionId" ColumnName="AppVesrionId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BioMetricDataPullPush" FunctionName="GInfraModel.Store.BioMetricDataPullPush" />
+          <FunctionImportMapping FunctionImportName="BioMetricDataPullPushtemp" FunctionName="GInfraModel.Store.BioMetricDataPullPushtemp" />
+          <FunctionImportMapping FunctionImportName="deletedata" FunctionName="GInfraModel.Store.deletedata" />
+          <FunctionImportMapping FunctionImportName="Get_UserId" FunctionName="GInfraModel.Store.Get_UserId" />
+          <FunctionImportMapping FunctionImportName="getAttendanceListByReportingHead" FunctionName="GInfraModel.Store.getAttendanceListByReportingHead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.getAttendanceListByReportingHead_Result">
+                <ScalarProperty Name="AttendanceLogId" ColumnName="AttendanceLogId" />
+                <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
+                <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="HeadId" ColumnName="HeadId" />
+                <ScalarProperty Name="AddressIn" ColumnName="AddressIn" />
+                <ScalarProperty Name="LattitudeIn" ColumnName="LattitudeIn" />
+                <ScalarProperty Name="LongitudeIn" ColumnName="LongitudeIn" />
+                <ScalarProperty Name="AddressOut" ColumnName="AddressOut" />
+                <ScalarProperty Name="LattitudeOut" ColumnName="LattitudeOut" />
+                <ScalarProperty Name="LongitudeOut" ColumnName="LongitudeOut" />
+                <ScalarProperty Name="AttendanceStatus" ColumnName="AttendanceStatus" />
+                <ScalarProperty Name="Modeofpunchin" ColumnName="Modeofpunchin" />
+                <ScalarProperty Name="InImage" ColumnName="InImage" />
+                <ScalarProperty Name="shiftintime" ColumnName="shiftintime" />
+                <ScalarProperty Name="shiftouttime" ColumnName="shiftouttime" />
+                <ScalarProperty Name="ManagerActionOn" ColumnName="ManagerActionOn" />
+                <ScalarProperty Name="ManagerRemarks" ColumnName="ManagerRemarks" />
+                <ScalarProperty Name="PolygonIn" ColumnName="PolygonIn" />
+                <ScalarProperty Name="PolygonOut" ColumnName="PolygonOut" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="MarkedByIn" ColumnName="MarkedByIn" />
+                <ScalarProperty Name="MarkedByOut" ColumnName="MarkedByOut" />
+                <ScalarProperty Name="ModeofpunchOut" ColumnName="ModeofpunchOut" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBirthdayData" FunctionName="GInfraModel.Store.GetBirthdayData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.GetBirthdayData_Result">
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="BirthdayDate" ColumnName="BirthdayDate" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="CmpMail" ColumnName="CmpMail" />
+                <ScalarProperty Name="MangerID" ColumnName="MangerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getuserattendancebyhead" FunctionName="GInfraModel.Store.getuserattendancebyhead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.getuserattendancebyhead_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="AttendanceLogId" ColumnName="AttendanceLogId" />
+                <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
+                <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="HeadId" ColumnName="HeadId" />
+                <ScalarProperty Name="AddressIn" ColumnName="AddressIn" />
+                <ScalarProperty Name="LattitudeIn" ColumnName="LattitudeIn" />
+                <ScalarProperty Name="LongitudeIn" ColumnName="LongitudeIn" />
+                <ScalarProperty Name="AddressOut" ColumnName="AddressOut" />
+                <ScalarProperty Name="LattitudeOut" ColumnName="LattitudeOut" />
+                <ScalarProperty Name="LongitudeOut" ColumnName="LongitudeOut" />
+                <ScalarProperty Name="AttendanceStatus" ColumnName="AttendanceStatus" />
+                <ScalarProperty Name="Modeofpunchin" ColumnName="Modeofpunchin" />
+                <ScalarProperty Name="ModeofpunchOut" ColumnName="ModeofpunchOut" />
+                <ScalarProperty Name="InImage" ColumnName="InImage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertAttendanceDATA_NEW12am" FunctionName="GInfraModel.Store.InsertAttendanceDATA_NEW12am" />
+          <FunctionImportMapping FunctionImportName="InsertAttendanceDATA_NEW12pm" FunctionName="GInfraModel.Store.InsertAttendanceDATA_NEW12pm" />
+          <FunctionImportMapping FunctionImportName="InsertAttendanceDATA_NEWtemp" FunctionName="GInfraModel.Store.InsertAttendanceDATA_NEWtemp" />
+          <FunctionImportMapping FunctionImportName="Sftpemployeepassword" FunctionName="GInfraModel.Store.Sftpemployeepassword" />
+          <FunctionImportMapping FunctionImportName="sp_ApproveorRejectAttendance" FunctionName="GInfraModel.Store.sp_ApproveorRejectAttendance">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_ApproveorRejectAttendance_Result">
+                <ScalarProperty Name="ReturnCode" ColumnName="ReturnCode" />
+                <ScalarProperty Name="ReturnMessage" ColumnName="ReturnMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Attendancelistbyuser" FunctionName="GInfraModel.Store.sp_Attendancelistbyuser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_Attendancelistbyuser_Result">
+                <ScalarProperty Name="AttendanceLogId" ColumnName="AttendanceLogId" />
+                <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
+                <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="HeadId" ColumnName="HeadId" />
+                <ScalarProperty Name="AddressIn" ColumnName="AddressIn" />
+                <ScalarProperty Name="LattitudeIn" ColumnName="LattitudeIn" />
+                <ScalarProperty Name="LongitudeIn" ColumnName="LongitudeIn" />
+                <ScalarProperty Name="AddressOut" ColumnName="AddressOut" />
+                <ScalarProperty Name="LattitudeOut" ColumnName="LattitudeOut" />
+                <ScalarProperty Name="LongitudeOut" ColumnName="LongitudeOut" />
+                <ScalarProperty Name="AttendanceStatus" ColumnName="AttendanceStatus" />
+                <ScalarProperty Name="Modeofpunchin" ColumnName="Modeofpunchin" />
+                <ScalarProperty Name="InImage" ColumnName="InImage" />
+                <ScalarProperty Name="shiftintime" ColumnName="shiftintime" />
+                <ScalarProperty Name="shiftouttime" ColumnName="shiftouttime" />
+                <ScalarProperty Name="ManagerActionOn" ColumnName="ManagerActionOn" />
+                <ScalarProperty Name="ManagerRemarks" ColumnName="ManagerRemarks" />
+                <ScalarProperty Name="PolygonIn" ColumnName="PolygonIn" />
+                <ScalarProperty Name="PolygonOut" ColumnName="PolygonOut" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="MarkedByIn" ColumnName="MarkedByIn" />
+                <ScalarProperty Name="MarkedByOut" ColumnName="MarkedByOut" />
+                <ScalarProperty Name="ModeofpunchOut" ColumnName="ModeofpunchOut" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_bannerimage" FunctionName="GInfraModel.Store.sp_bannerimage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_bannerimage_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Fromdate" ColumnName="Fromdate" />
+                <ScalarProperty Name="Todate" ColumnName="Todate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BackgroundImage" ColumnName="BackgroundImage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_checkcurrentstatus" FunctionName="GInfraModel.Store.sp_checkcurrentstatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_checkcurrentstatus_Result">
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
+                <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+                <ScalarProperty Name="AttendanceLogId" ColumnName="AttendanceLogId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_checkhours" FunctionName="GInfraModel.Store.sp_checkhours" />
+          <FunctionImportMapping FunctionImportName="sp_forgetpassword" FunctionName="GInfraModel.Store.sp_forgetpassword" />
+          <FunctionImportMapping FunctionImportName="sp_getheaddatabyuserid" FunctionName="GInfraModel.Store.sp_getheaddatabyuserid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_getheaddatabyuserid_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserNameMail" ColumnName="UserNameMail" />
+                <ScalarProperty Name="ReportingHeadId" ColumnName="ReportingHeadId" />
+                <ScalarProperty Name="ReportingHeadName" ColumnName="ReportingHeadName" />
+                <ScalarProperty Name="ReportingHeadMail" ColumnName="ReportingHeadMail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_hrnotification" FunctionName="GInfraModel.Store.sp_hrnotification">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_hrnotification_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_InsertPolygon" FunctionName="GInfraModel.Store.Sp_InsertPolygon" />
+          <FunctionImportMapping FunctionImportName="sp_login" FunctionName="GInfraModel.Store.sp_login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_login_Result">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_logintemp" FunctionName="GInfraModel.Store.sp_logintemp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_logintemp_Result">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_mobiledevice" FunctionName="GInfraModel.Store.sp_mobiledevice" />
+          <FunctionImportMapping FunctionImportName="Sp_MonthlyAttendanceReports" FunctionName="GInfraModel.Store.Sp_MonthlyAttendanceReports">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.Sp_MonthlyAttendanceReports_Result">
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+                <ScalarProperty Name="BUDescription" ColumnName="BUDescription" />
+                <ScalarProperty Name="Absent" ColumnName="Absent" />
+                <ScalarProperty Name="WO" ColumnName="WO" />
+                <ScalarProperty Name="Present" ColumnName="Present" />
+                <ScalarProperty Name="TDP" ColumnName="TDP" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="HRID" ColumnName="HRID" />
+                <ScalarProperty Name="HRName" ColumnName="HRName" />
+                <ScalarProperty Name="MangerID" ColumnName="MangerID" />
+                <ScalarProperty Name="MangerName" ColumnName="MangerName" />
+                <ScalarProperty Name="EmpEmailId" ColumnName="EmpEmailId" />
+                <ScalarProperty Name="EmpMobile" ColumnName="EmpMobile" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="BUCode" ColumnName="BUCode" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="C1" ColumnName="1" />
+                <ScalarProperty Name="C2" ColumnName="2" />
+                <ScalarProperty Name="C3" ColumnName="3" />
+                <ScalarProperty Name="C4" ColumnName="4" />
+                <ScalarProperty Name="C5" ColumnName="5" />
+                <ScalarProperty Name="C6" ColumnName="6" />
+                <ScalarProperty Name="C7" ColumnName="7" />
+                <ScalarProperty Name="C8" ColumnName="8" />
+                <ScalarProperty Name="C9" ColumnName="9" />
+                <ScalarProperty Name="C10" ColumnName="10" />
+                <ScalarProperty Name="C11" ColumnName="11" />
+                <ScalarProperty Name="C12" ColumnName="12" />
+                <ScalarProperty Name="C13" ColumnName="13" />
+                <ScalarProperty Name="C14" ColumnName="14" />
+                <ScalarProperty Name="C15" ColumnName="15" />
+                <ScalarProperty Name="C16" ColumnName="16" />
+                <ScalarProperty Name="C17" ColumnName="17" />
+                <ScalarProperty Name="C18" ColumnName="18" />
+                <ScalarProperty Name="C19" ColumnName="19" />
+                <ScalarProperty Name="C20" ColumnName="20" />
+                <ScalarProperty Name="C21" ColumnName="21" />
+                <ScalarProperty Name="C22" ColumnName="22" />
+                <ScalarProperty Name="C23" ColumnName="23" />
+                <ScalarProperty Name="C24" ColumnName="24" />
+                <ScalarProperty Name="C25" ColumnName="25" />
+                <ScalarProperty Name="C26" ColumnName="26" />
+                <ScalarProperty Name="C27" ColumnName="27" />
+                <ScalarProperty Name="C28" ColumnName="28" />
+                <ScalarProperty Name="C29" ColumnName="29" />
+                <ScalarProperty Name="C30" ColumnName="30" />
+                <ScalarProperty Name="C31" ColumnName="31" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_polygon" FunctionName="GInfraModel.Store.sp_polygon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_polygon_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="siteid" ColumnName="siteid" />
+                <ScalarProperty Name="lattitude" ColumnName="lattitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ReasonsList" FunctionName="GInfraModel.Store.sp_ReasonsList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_ReasonsList_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="reasons" ColumnName="reasons" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_updateUserPassword" FunctionName="GInfraModel.Store.sp_updateUserPassword">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_updateUserPassword_Result">
+                <ScalarProperty Name="returnvalue" ColumnName="returnvalue" />
+                <ScalarProperty Name="returnmessage" ColumnName="returnmessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertAttendanceIn" FunctionName="GInfraModel.Store.InsertAttendanceIn">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.InsertAttendanceIn_Result">
+                <ScalarProperty Name="returncode" ColumnName="returncode" />
+                <ScalarProperty Name="returnmessage" ColumnName="returnmessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertAttendanceOut" FunctionName="GInfraModel.Store.InsertAttendanceOut">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.InsertAttendanceOut_Result">
+                <ScalarProperty Name="returncode" ColumnName="returncode" />
+                <ScalarProperty Name="returnmessage" ColumnName="returnmessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="GInfraModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Curr_datetime" ColumnName="Curr_datetime" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_notification" FunctionName="GInfraModel.Store.sp_notification" />
+          <EntitySetMapping Name="iosAppversionMasters">
+            <EntityTypeMapping TypeName="GInfraModel.iosAppversionMaster">
+              <MappingFragment StoreEntitySet="iosAppversionMaster">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AppVersionUrl" ColumnName="AppVersionUrl" />
+                <ScalarProperty Name="AppVesrionId" ColumnName="AppVesrionId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_updateappversion" FunctionName="GInfraModel.Store.sp_updateappversion" />
+          <EntitySetMapping Name="MobileDetails">
+            <EntityTypeMapping TypeName="GInfraModel.MobileDetail">
+              <MappingFragment StoreEntitySet="MobileDetails">
+                <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+                <ScalarProperty Name="LastLocation" ColumnName="LastLocation" />
+                <ScalarProperty Name="LastActivity" ColumnName="LastActivity" />
+                <ScalarProperty Name="Battery" ColumnName="Battery" />
+                <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_mobiledetails" FunctionName="GInfraModel.Store.sp_mobiledetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GInfraModel.sp_mobiledetails_Result">
+                <ScalarProperty Name="returncode" ColumnName="returncode" />
+                <ScalarProperty Name="returnmessage" ColumnName="returnmessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Roasters">
+            <EntityTypeMapping TypeName="GInfraModel.Roaster">
+              <MappingFragment StoreEntitySet="Roaster">
+                <ScalarProperty Name="ShiftTimming" ColumnName="ShiftTimming" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeMasters">
+            <EntityTypeMapping TypeName="GInfraModel.EmployeeMaster">
+              <MappingFragment StoreEntitySet="EmployeeMaster">
+                <ScalarProperty Name="BUCode" ColumnName="BUCode" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="GradeCode" ColumnName="GradeCode" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="HRManagerMobile" ColumnName="HRManagerMobile" />
+                <ScalarProperty Name="HRManagerEmail" ColumnName="HRManagerEmail" />
+                <ScalarProperty Name="HRName" ColumnName="HRName" />
+                <ScalarProperty Name="HRID" ColumnName="HRID" />
+                <ScalarProperty Name="ManagerMobile" ColumnName="ManagerMobile" />
+                <ScalarProperty Name="MangerEmail" ColumnName="MangerEmail" />
+                <ScalarProperty Name="MangerName" ColumnName="MangerName" />
+                <ScalarProperty Name="MangerID" ColumnName="MangerID" />
+                <ScalarProperty Name="EmpMobile" ColumnName="EmpMobile" />
+                <ScalarProperty Name="EmpEmailId" ColumnName="EmpEmailId" />
+                <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteMasters">
+            <EntityTypeMapping TypeName="GInfraModel.SiteMaster">
+              <MappingFragment StoreEntitySet="SiteMaster">
+                <ScalarProperty Name="longitute" ColumnName="longitute" />
+                <ScalarProperty Name="lattitude" ColumnName="lattitude" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="GracePeriod" ColumnName="GracePeriod" />
+                <ScalarProperty Name="Workinghours" ColumnName="Workinghours" />
+                <ScalarProperty Name="BUDescription" ColumnName="BUDescription" />
+                <ScalarProperty Name="BUCode" ColumnName="BUCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

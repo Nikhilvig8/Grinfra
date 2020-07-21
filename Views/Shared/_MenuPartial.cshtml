@@ -1,0 +1,173 @@
+﻿
+<div id="sidebar" class="do-nicescrol">
+    <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+        <li class="admin-user">
+            <a class="navbar-brand" href="javascript:void;"><img src="~/images/logo_inner.png" alt="pwc logo" width="75%" /> </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" class="report">  <span>Reports</span> <i class="fa fa-angle-down ml-auto float-right"></i> </a>
+            <ul class="sub-menu  icon-view">
+                <li>
+                    <a href="/AttendanceReport/Report" @*class="report"*@> <span>- Attendance Report </span> </a>
+                </li>
+                <li>
+                    <a href="/MonthlyAttendanceReport/Index" @*class="monthly-report"*@> <span>- Monthly Report </span> </a>
+                </li>
+            </ul>
+        </li>
+        @if ((Session["Role"].ToString() == "RL01") || (Session["Role"].ToString() == "RL02"))
+        {
+            <li>
+                <a href="javascript:void(0);" class="role">  <span>Settings</span> <i class="fa fa-angle-down ml-auto float-right"></i> </a>
+                <ul class="sub-menu  icon-view">
+                    @if ((Session["Role"].ToString() == "RL01") || (Session["Role"].ToString() == "RL02"))
+                    {
+                        <li>
+                            <a href="/ReasonMasters/Index" @*class="reason"*@> <span>- Reason</span></a>
+                        </li>
+
+                        <li>
+                            <a href="/RoleMaster/Index" @*class="role"*@> <span>- Active-DeActive Users</span></a>
+                        </li>
+                    }
+                    @if ((Session["Role"].ToString() == "RL01"))
+                    {
+                        <li>
+                            <a href="/SuperMaster/Index" @*class="super"*@> <span>- Super Users</span></a>
+                        </li>
+                        <li>
+                            <a href="/DoublePunchMasters/Index" @*class="super"*@> <span>- Double Punch Sites</span></a>
+                        </li>
+                    }
+                </ul>
+            </li>
+
+            @*@if (Session["LoginId"] != null)
+            {
+                <li><a href="/LoginPortal/Logout" class="logout"> <span>Logout</span> </a></li>
+            }
+            else
+            {
+                <li><a href="/LoginPortal/Login" class="logout"> <span>LogIn</span> </a></li>
+            }*@
+
+        }
+        <li>
+            <a href="/ApproveRejectAttendance/Attendance" class="approvereject"> <span>Approve/Reject Attendance</span></a>
+        </li>
+        <li>
+            <a href="/DashBoard/DashBoard" class="dashboard"> <span>DashBoard </span> </a>
+        </li>
+        <li>
+            <a href="/TempEmployeeMasters/Index" class="user"> <span>Users</span></a>
+        </li>
+        @if ((Session["Role"].ToString() == "RL01") || (Session["Role"].ToString() == "RL02"))
+        {
+            <li>
+                <a href="/MobileDevice/Index" class="mobile"> <span>Mobile Device</span></a>
+            </li>
+
+            <li>
+                <a href="/BannerUploader/BannerUpload" class="gallery"> <span>Gallery</span></a>
+            </li>
+
+            <li>
+                <a href="/PolygonPortal/List" class="polygon"> <span>Polygon</span></a>
+            </li>
+
+            <li>
+                <a href="/HRAnnouncement/List" class="hrann"> <span>HR Announcement</span></a>
+            </li>
+
+            <li>
+                <a href="/SiteMaster/Index" class="sitemaster"> <span>Branch Timing</span></a>
+            </li>
+
+
+        }
+        <li>
+            <a href="/ChangePassword/Index" class="sitemaster"> <span>Change Password</span></a>
+        </li>
+    </ul>
+    <div class="sidenav-bg mask-strong"></div>
+</div>
+
+
+
+
+@*<div id="sidebar" class="do-nicescrol">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            <li class="admin-user">
+                <a class="navbar-brand" href="javascript:void;"><img src="~/images/logo_inner.png" alt="pwc logo" width="75%" /> </a>
+            </li>
+            <li>
+                <a href="/AttendanceReport/Report" class="report"> <span>Attendance Report </span> </a>
+            </li>
+            <li>
+                <a href="/MonthlyAttendanceReport/Index" class="monthly-report"> <span>Monthly Report </span> </a>
+            </li>
+            <li>
+                <a href="/DashBoard/DashBoard" class="dashboard"> <span>DashBoard </span> </a>
+            </li>
+            <li>
+                <a href="/ApproveRejectAttendance/Attendance" class="approvereject"> <span>Approve/Reject Attendance</span></a>
+            </li>
+            <li>
+                <a href="/TempEmployeeMasters/Index" class="user"> <span>Users</span></a>
+            </li>
+            @if ((Session["Role"].ToString() == "RL01") || (Session["Role"].ToString() == "RL02"))
+            {
+                <li>
+                    <a href="/MobileDevice/Index" class="mobile"> <span>Mobile Device</span></a>
+                </li>
+
+                <li>
+                    <a href="/BannerUploader/BannerUpload" class="gallery"> <span>Gallery</span></a>
+                </li>
+
+                <li>
+                    <a href="/PolygonPortal/SiteWisePolygon" class="polygon"> <span>Polygon</span></a>
+                </li>
+
+                <li>
+                    <a href="/ReasonMasters/Index" class="reason"> <span>Reason</span></a>
+                </li>
+
+                <li>
+                    <a href="/HRAnnouncement/List" class="hrann"> <span>HR Announcement</span></a>
+                </li>
+
+                <li>
+                    <a href="/SiteMaster/Index" class="sitemaster"> <span>Branch Timing</span></a>
+                </li>
+                <li>
+                    <a href="/RoleMaster/Index" class="role"> <span>Active-DeActive Users</span></a>
+                </li>
+            }
+            @if ((Session["Role"].ToString() == "RL01"))
+            {
+                <li>
+                    <a href="/SuperMaster/Index" class="super"> <span>Super Users</span></a>
+                </li>
+            }
+        </ul>
+        <div class="sidenav-bg mask-strong"></div>
+    </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

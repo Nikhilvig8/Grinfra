@@ -1,0 +1,95 @@
+﻿@model GrInfra.Models.UserCreate
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="tab-content px-sm-0 clearfix" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <h2>Edit</h2>
+
+        @using (Html.BeginForm("Edit", "TempEmployeeMasters", FormMethod.Post, new { @id = "Edit" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row  event-detail ml-auto">
+                <h2 class="col-sm-12">TempEmployeeMaster</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.HiddenFor(model => model.EmployeeId)
+
+                <div class="form-group col-sm-6 col-6">
+                    <label class="control-label col-md-6">Member Name</label>
+                    @Html.EditorFor(model => model.EmpName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.EmpName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-sm-6 col-6">
+                    @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.DropDownListFor(model => model.Department, (IEnumerable<SelectListItem>)ViewBag.CostList, "Select", htmlAttributes: new { id = "search1", @class = "form-control select2", disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-sm-6 col-6">
+                    @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                </div>
+
+                @*@Html.HiddenFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                <div class="form-group col-sm-6 col-6">
+                    <label class="control-label col-md-6">Branch</label>
+                    @Html.DropDownListFor(model => model.Branch, (IEnumerable<SelectListItem>)ViewBag.BranchList, "Select", htmlAttributes: new { id = "branch1", @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-sm-6 col-6">
+                    <label class="control-label col-md-6">Reporting Head</label>
+                    @Html.DropDownListFor(model => model.ReportingManger, (IEnumerable<SelectListItem>)ViewBag.ManagerIdList, "Select", htmlAttributes: new { id = "manager", @class = "form-control select2", disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.ReportingManger, "", new { @class = "text-danger" })
+                    @if (ViewBag.ErrorReporting != "")
+                    {
+                        <span class="text-danger">@ViewBag.ErrorReporting</span>
+                    }
+                </div>
+
+
+
+
+                <div class="form-group col-sm-6 col-6">
+                    <label class="control-label col-md-6">Date Of Birth</label>
+                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="form-group col-sm-6 col-6">
+                    @Html.LabelFor(model => model.EmpMobile, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.EmpMobile, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", type = "tel", pattern = "[0-9]{10}" } })
+                    @Html.ValidationMessageFor(model => model.EmpMobile, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-sm-6 col-6">
+                    <label class="control-label col-md-6">Company Email</label>
+                    @Html.EditorFor(model => model.EmpEmailId, new { htmlAttributes = new { @class = "form-control", type = "email", disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.EmpEmailId, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-sm-6 col-6">
+                    <label class="control-label col-md-6">Role</label>
+                    @Html.DropDownListFor(model => model.Role, (IEnumerable<SelectListItem>)ViewBag.RoleList, "Select", htmlAttributes: new { id = "role", @class = "form-control select2"})
+                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                </div>
+
+
+                @Html.HiddenFor(model => model.Sex, new { htmlAttributes = new { @class = "form-control" } })
+
+                <div class="d-flex bttn-box mt-2 mb-2 pl-1">
+                    <input type="submit" value="Update" class="btn red-btn" />
+                    <input type="button" class="btn dark-grey-btn" value="Cancel" onclick="location.href='@Url.Action("Index", "TempEmployeeMasters")'" />
+                </div>
+            </div>
+        }
+      
+    </div>
+</div>

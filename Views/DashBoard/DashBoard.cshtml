@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "DashBoard";
+}
+
+    <div class="row">
+        <div class="col-md-12 dashboard">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-12">
+                    <div class="kpi-bg-cmn kpi-bg1">
+                        <span>Total Pending</span>
+                        <p id="pending">0</p>
+                        <img src="~/images/total-request-icon.png" alt="kpi icon">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-12">
+                    <div class="kpi-bg-cmn kpi-bg2">
+                        <span>Absent</span>
+                        <p id="absent">0</p>
+                        <img src="~/images/total-request-icon.png" alt="kpi icon">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-12">
+                    <div class="kpi-bg-cmn kpi-bg3">
+                        <span>Present</span>
+                        <p id="present">0</p>
+                        <img src="~/images/total-request-icon.png" alt="kpi icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="report-details-cover mb-3">
+        @using (Html.BeginForm())
+        {
+            <div class="report-details mb-0">
+                <h2>Reports</h2>
+                <div class="reports-hdr">
+                    <div class="selectdiv">
+                        @Html.DropDownList("branch", (IEnumerable<SelectListItem>)ViewBag.BranchList, "Select Location", htmlAttributes: new { id = "branch", @class = "form-control select2" })
+                    </div>
+                    <div class="form-group date">
+                        @Html.Editor("fromdate", new { htmlAttributes = new { @class = "form-control", id = "datepicker-from", autocomplete = "off", PlaceHolder = "From" , Title = "From Date"} })
+                    </div>
+                    <div class="form-group date">
+                        @Html.Editor("todate", new { htmlAttributes = new { @class = "form-control", id = "datepicker-to", autocomplete = "off", PlaceHolder = "To" , Title = "To Date"} })
+                    </div>
+                    <div class="d-flex">
+                        <input type="button" id="filter" class="btn red-btn" value="Go" title="Filter Data on Basis of Filter"  />
+                        <input type="button" id="reset" title="Removes All Appplied Filters" class="btn orange-btn" value="Reset" onclick="location.href='@Url.Action("DashBoard", "DashBoard")'" />
+                    </div>
+                </div>
+            </div>
+            
+        }
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-6 col-12 ">
+                    <div class="cmn-box" id="columnchart" style="border-radius: 10px; overflow:hidden">
+                        <span style=" font-size: 20px;"> Chart Will be Loaded Here </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12 ">
+                    <div class="cmn-box" id="piechart" style="border-radius: 10px; overflow:hidden">
+                        <span style=" font-size: 20px;"> Chart Will be Loaded Here </span>
+                    </div>
+                </div>
+            </div>
+
+
+            @*<div class="col-md-12">
+            <div id="piechart" class="cmn-box">
+                <span style="margin-left: 30%; font-size: 20px;"> Chart Will be Loaded Here </span>
+            </div>
+        </div>*@
+            </div>
+        </div>
+    

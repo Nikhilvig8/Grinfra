@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4429d777e0a749faaaff9e61d3afb033" Name="Diagram1" ZoomLevel="56">
+        <EntityTypeShape EntityType="GInfraModel.AttendanceLogsNewForMobile" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GInfraModel.attendancestatusmaster" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GInfraModel.Banner_image" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GInfraModel.BiometricAttendance" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GInfraModel.DoublePunchMaster" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="GInfraModel.HR_Announcement" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GInfraModel.MasterPassword" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="GInfraModel.MobileDevicelog" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GInfraModel.Monthly" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GInfraModel.Polygon" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GInfraModel.ReasonMaster" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="GInfraModel.RoleDefine" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GInfraModel.ShiftMaster" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GInfraModel.AppversionMaster" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="GInfraModel.Notification" Width="1.5" PointX="7.375" PointY="12.75" />
+        <EntityTypeShape EntityType="GInfraModel.iosAppversionMaster" Width="1.5" PointX="9.375" PointY="12.75" />
+        <EntityTypeShape EntityType="GInfraModel.MobileDetail" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="GInfraModel.Roaster" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GInfraModel.EmployeeMaster" Width="1.5" PointX="11.375" PointY="12.75" />
+        <EntityTypeShape EntityType="GInfraModel.SiteMaster" Width="1.5" PointX="13.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
